@@ -1,18 +1,20 @@
 {
-  "name": "html-css",
+  "name": "captain-a1-security-services",
   "version": "1.0.0",
-  "description": "A template for HTML and CSS",
+  "description": "Static website for Captain A1 Security Services.",
+  "packageManager": "npm@10.7.0",
   "main": "index.html",
   "scripts": {
-    "start": "serve"
+    "start": "serve .",
+    "preview": "serve ."
   },
   "keywords": [
-    "html",
-    "css"
+    "security-services",
+    "static-site"
   ],
-  "author": "Ives van Hoorne",
+  "author": "Captain A1 Security Services",
   "license": "MIT",
   "devDependencies": {
-    "serve": "14.2.3"
+    "serve": "14.2.6"
   }
 }

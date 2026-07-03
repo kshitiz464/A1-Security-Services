@@ -1,116 +1,88 @@
-// //navbar sticky js
+(function () {
+  const header = document.querySelector(".site-header");
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const navigation = document.getElementById("primary-navigation");
 
-// // Get the navbar
-// var navbar = document.getElementById("navbar");
-
-// // Get the offset position of the navbar
-// var sticky = navbar.offsetTop;
-
-// // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-// function myFunction() {
-//   if (window.scrollY >= sticky) {
-//     navbar.classList.add("sticky");
-//   } else {
-//     navbar.classList.remove("sticky");
-//   }
-// }
-
-// carousiel funcationaliy
-
-document.addEventListener("DOMContentLoaded", function () {
-  const slides = document.querySelectorAll(".slide");
-  const dots = document.querySelectorAll(".dot");
-  let currentSlide = 0;
-
-  // Show the first slide initially
-  showSlide(currentSlide);
-
-  // Next/prev control
-  document.querySelector(".next").addEventListener("click", function () {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  });
-
-  document.querySelector(".prev").addEventListener("click", function () {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-  });
-
-  // Dot control
-  dots.forEach((dot, index) => {
-    dot.addEventListener("click", function () {
-      currentSlide = index;
-      showSlide(currentSlide);
-    });
-  });
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.remove("active");
-      dots[i].classList.remove("active");
+  if (header && navToggle && navigation) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+      navToggle.setAttribute("aria-expanded", String(!isOpen));
+      header.classList.toggle("is-open", !isOpen);
     });
 
-    slides[index].classList.add("active");
-    dots[index].classList.add("active");
+    navigation.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLAnchorElement) {
+        navToggle.setAttribute("aria-expanded", "false");
+        header.classList.remove("is-open");
+      }
+    });
   }
-});
 
-// Contact us form funcationality
+  document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
+    const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+    const previous = carousel.querySelector("[data-carousel-prev]");
+    const next = carousel.querySelector("[data-carousel-next]");
+    let activeIndex = 0;
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   const form = document.getElementById("contact-form");
+    if (!slides.length) {
+      return;
+    }
 
-//   form.addEventListener("submit", function (event) {
-//     event.preventDefault();
+    const showSlide = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
 
-//     // Get form values
-//     const firstName = document.getElementById("first-name").value.trim();
-//     const lastName = document.getElementById("last-name").value.trim();
-//     const email = document.getElementById("email").value.trim();
-//     const message = document.getElementById("message").value.trim();
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === activeIndex;
+        slide.classList.toggle("is-active", isActive);
+        slide.setAttribute("aria-hidden", String(!isActive));
+      });
 
-//     // Simple form validation
-//     if (!firstName || !lastName || !email || !message) {
-//       alert("Please fill in all required fields.");
-//       return;
-//     }
+      dots.forEach((dot, dotIndex) => {
+        const isActive = dotIndex === activeIndex;
+        dot.classList.toggle("is-active", isActive);
+        dot.setAttribute("aria-selected", String(isActive));
+      });
+    };
 
-//     if (!validateEmail(email)) {
-//       alert("Please enter a valid email address.");
-//       return;
-//     }
+    previous?.addEventListener("click", () => showSlide(activeIndex - 1));
+    next?.addEventListener("click", () => showSlide(activeIndex + 1));
+    dots.forEach((dot, dotIndex) => {
+      dot.addEventListener("click", () => showSlide(dotIndex));
+    });
 
-//     // If validation passes
-//     alert(
-//       "Thank you for contacting us, " +
-//         firstName +
-//         " " +
-//         lastName +
-//         "! We will get back to you shortly."
-//     );
+    showSlide(activeIndex);
+  });
 
-//     // Reset form
-//     form.reset();
-//   });
+  document.querySelectorAll("[data-secure-form]").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      const status = form.querySelector("[data-form-status]");
+      const honeypot = form.querySelector('input[name="botcheck"]');
 
-//   function validateEmail(email) {
-//     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-//     return re.test(String(email).toLowerCase());
-//   }
-// });
+      if (honeypot instanceof HTMLInputElement && honeypot.checked) {
+        event.preventDefault();
+        return;
+      }
 
-// Button functionality JS
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        status.textContent = "Please complete the required fields before sending.";
+        form.reportValidity();
+        return;
+      }
 
-const myButton = document.getElementById("our-services-main-btn");
-const targetElementId = "our-services-main-content"; // Replace with the actual ID
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+      }
 
-myButton.addEventListener("click", () => {
-  window.location.href = `about.html#${targetElementId}`;
-});
+      status.textContent = "Sending your enquiry securely...";
+    });
+  });
 
-const aboutButton = document.getElementById("learn-more-btn");
-const targetElementId2 = "about-us-section"; // Replace with the actual ID
-
-aboutButton.addEventListener("click", () => {
-  window.location.href = `about.html#${targetElementId2}`;
-});
+  const year = document.querySelector("[data-year]");
+  if (year) {
+    year.textContent = String(new Date().getFullYear());
+  }
+})();

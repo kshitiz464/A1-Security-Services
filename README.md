@@ -1,61 +1,26 @@
-# A1 Security Services
+# Captain A1 Security Services
 
-A professional security services website built with modern web technologies.
+Static website for Captain A1 Security Services, a private security and facility support provider based in Ajmer, Rajasthan.
 
-## 📋 Overview
+## Pages
 
-This repository contains the frontend website for A1 Security Services, a security services provider. The site is designed to showcase services, build client trust, and provide easy access to contact information.
+- `index.html` - homepage, service overview, certifications, testimonials, and quick enquiry form
+- `about.html` - company story, operating principles, detailed services, and client/location highlights
+- `contact.html` - full contact form, contact details, and embedded map
 
-## 🛠️ Tech Stack
+## Run Locally
 
-| Component | Technology |
-|-----------|------------|
-| Markup | HTML5 |
-| Styling | CSS3 |
-| Frontend | Vanilla JavaScript |
+Install dependencies and start the static server:
 
-## 📁 Project Structure
-
-```
-A1-Security-Services/
-├── index.html          # Main page
-├── css/
-│   └── styles.css      # Styling
-├── js/
-│   └── script.js       # Client-side functionality
-├── images/             # Assets
-└── README.md           # This file
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- No installation required
-
-### Running Locally
-
-1. Clone the repository:
 ```bash
-git clone https://github.com/kshitiz464/A1-Security-Services.git
-cd A1-Security-Services
+npm install
+npm start
 ```
 
-2. Open `index.html` in your web browser, or use a local server:
-```bash
-# Using Python
-python -m http.server 8000
+The site is also static, so it can be hosted by GitHub Pages or any static hosting provider.
 
-# Using Node.js (if you have http-server installed)
-http-server
-```
+## Security Notes
 
-3. Visit `http://localhost:8000` in your browser
-
-## 📝 License
-
-This project is available for viewing and use.
-
----
-
-**Made by** [Kshitiz Yadav](https://github.com/kshitiz464)
+- Browser-side Content Security Policy, referrer policy, and permissions policy are included in every page.
+- `serve.json` adds equivalent local preview headers when using the `serve` package.
+- The Web3Forms access key is necessarily visible because this is a static website. For stronger protection, move form submission behind a small backend endpoint.
