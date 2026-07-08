@@ -34,6 +34,14 @@ body {
   overflow-x: hidden;
 }
 
+body[data-language-page] {
+  font-family: "Noto Sans Devanagari", "Poppins", Arial, sans-serif;
+}
+
+body[data-language-page][data-active-language="en"] {
+  font-family: "Poppins", Arial, sans-serif;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -765,6 +773,235 @@ h3 {
   box-shadow: var(--shadow);
 }
 
+.language-switcher-wrap {
+  position: sticky;
+  top: 82px;
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.language-switcher {
+  width: var(--shell);
+  margin-inline: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.language-switcher button {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.language-switcher button.is-active {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: var(--white);
+}
+
+.hiring-hero {
+  position: relative;
+  min-height: 650px;
+  display: grid;
+  align-items: center;
+  color: var(--white);
+  background:
+    linear-gradient(90deg, rgba(8, 18, 33, 0.92), rgba(8, 18, 33, 0.7), rgba(8, 18, 33, 0.38)),
+    url("images/guards.jpg") center / cover;
+}
+
+.hiring-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+  gap: 46px;
+  align-items: center;
+  padding: 76px 0;
+}
+
+.hiring-hero__copy {
+  max-width: 760px;
+}
+
+.urgent-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  margin: 0 0 18px;
+  padding: 0 14px;
+  border-radius: var(--radius);
+  background: var(--amber);
+  color: var(--navy);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.hiring-page h1 {
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+}
+
+.hiring-hero__lead {
+  max-width: 680px;
+  margin: 22px 0 0;
+  color: #eef5fb;
+  font-size: clamp(1.12rem, 2vw, 1.35rem);
+  font-weight: 600;
+}
+
+.button--call {
+  min-height: 56px;
+  padding-inline: 24px;
+  font-size: 1.05rem;
+  box-shadow: 0 14px 30px rgba(198, 61, 50, 0.28);
+}
+
+.hiring-call-panel {
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.hiring-call-panel strong {
+  display: block;
+  color: var(--red);
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.hiring-call-panel p {
+  margin: 14px 0 18px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.hiring-call-panel ul {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 0 0 24px;
+  list-style: none;
+}
+
+.hiring-call-panel li {
+  position: relative;
+  padding-left: 24px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.hiring-call-panel li::before {
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green);
+  content: "";
+}
+
+.hiring-call-panel a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  border-radius: var(--radius);
+  background: var(--red);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.hiring-overview {
+  background: var(--white);
+}
+
+.hiring-card-grid,
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hiring-card-grid article,
+.process-steps article {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 0 12px 28px rgba(16, 35, 63, 0.08);
+}
+
+.hiring-card-grid span,
+.process-steps span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  background: rgba(231, 183, 85, 0.22);
+  color: var(--navy);
+  font-weight: 800;
+}
+
+.hiring-card-grid h3,
+.process-steps h3 {
+  font-size: 1.25rem;
+}
+
+.hiring-card-grid p,
+.process-steps p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.hiring-split .split-copy p {
+  color: var(--muted);
+}
+
+.hiring-process {
+  background: var(--mist);
+}
+
+.hiring-final-cta {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.hiring-final-cta .eyebrow {
+  color: var(--amber);
+}
+
+.hiring-final-cta p:not(.eyebrow) {
+  max-width: 680px;
+  color: #d5e1eb;
+  font-size: 1.08rem;
+}
+
+.hiring-final-cta__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.mobile-call-bar {
+  display: none;
+}
+
 .map-frame iframe {
   display: block;
   width: 100%;
@@ -953,8 +1190,19 @@ h3 {
   .card-grid--three,
   .split-layout,
   .contact-layout,
+  .hiring-hero__grid,
+  .hiring-card-grid,
+  .process-steps,
   .site-footer__grid {
     grid-template-columns: 1fr;
+  }
+
+  .language-switcher-wrap {
+    top: 76px;
+  }
+
+  .hiring-hero {
+    min-height: auto;
   }
 
   .split-layout--reverse .split-media {
@@ -969,6 +1217,10 @@ h3 {
 @media (max-width: 640px) {
   :root {
     --shell: min(100% - 24px, 1120px);
+  }
+
+  body[data-language-page] {
+    padding-bottom: 72px;
   }
 
   .brand span {
@@ -1004,6 +1256,55 @@ h3 {
 
   .button {
     width: 100%;
+  }
+
+  .language-switcher {
+    justify-content: stretch;
+  }
+
+  .language-switcher button {
+    flex: 1;
+  }
+
+  .hiring-hero__grid {
+    padding: 54px 0;
+  }
+
+  .hiring-call-panel {
+    padding: 22px;
+  }
+
+  .hiring-final-cta__inner {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .mobile-call-bar {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    z-index: 120;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    border-radius: var(--radius);
+    background: var(--red);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 800;
+    box-shadow: 0 16px 34px rgba(8, 18, 33, 0.28);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(90px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .mobile-call-bar.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .section {

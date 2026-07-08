@@ -7,6 +7,7 @@ Static website for Captain A1 Security Services, a private security and facility
 - `index.html` - homepage, service overview, certifications, testimonials, and quick enquiry form
 - `about.html` - company story, operating principles, detailed services, and client/location highlights
 - `contact.html` - full contact form, contact details, and embedded map
+- `guard-hiring-ajmer.html` - Hindi-first Google Ads landing page for urgent security guard hiring in Ajmer
 
 ## Run Locally
 

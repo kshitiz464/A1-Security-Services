@@ -18,6 +18,57 @@
     });
   }
 
+  const languagePage = document.querySelector("[data-language-page]");
+  if (languagePage) {
+    const panels = Array.from(document.querySelectorAll("[data-language-panel]"));
+    const languageButtons = Array.from(document.querySelectorAll("[data-language-switch]"));
+    const translatableText = Array.from(document.querySelectorAll("[data-lang-hi][data-lang-en]"));
+
+    const setLanguage = (language) => {
+      const activeLanguage = language === "en" ? "en" : "hi";
+
+      document.documentElement.lang = activeLanguage;
+      languagePage.setAttribute("data-active-language", activeLanguage);
+
+      panels.forEach((panel) => {
+        const panelLanguage = panel.getAttribute("data-language-panel");
+        panel.hidden = panelLanguage !== activeLanguage;
+      });
+
+      languageButtons.forEach((button) => {
+        const isActive = button.getAttribute("data-language-switch") === activeLanguage;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      translatableText.forEach((element) => {
+        const translation = element.getAttribute(`data-lang-${activeLanguage}`);
+        if (translation) {
+          element.textContent = translation;
+        }
+      });
+    };
+
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setLanguage(button.getAttribute("data-language-switch"));
+      });
+    });
+
+    setLanguage(languagePage.getAttribute("data-active-language"));
+  }
+
+  const mobileCallBar = document.querySelector(".mobile-call-bar");
+  if (mobileCallBar) {
+    const syncMobileCallBar = () => {
+      mobileCallBar.classList.toggle("is-visible", window.scrollY > 320);
+    };
+
+    syncMobileCallBar();
+    window.addEventListener("scroll", syncMobileCallBar, { passive: true });
+    window.addEventListener("resize", syncMobileCallBar);
+  }
+
   document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
     const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
