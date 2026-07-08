@@ -11,6 +11,7 @@
   --white: #ffffff;
   --line: #d8e0e6;
   --shadow: 0 18px 45px rgba(16, 35, 63, 0.14);
+  --soft-shadow: 0 10px 24px rgba(16, 35, 63, 0.08);
   --radius: 8px;
   --shell: min(1120px, calc(100% - 32px));
 }
@@ -219,7 +220,7 @@ button {
 .hero,
 .page-hero {
   position: relative;
-  min-height: 640px;
+  min-height: 590px;
   display: grid;
   align-items: center;
   color: var(--white);
@@ -235,7 +236,7 @@ button {
   inset: 0;
   z-index: -1;
   content: "";
-  background: linear-gradient(90deg, rgba(8, 18, 33, 0.88), rgba(8, 18, 33, 0.56), rgba(8, 18, 33, 0.22));
+  background: linear-gradient(90deg, rgba(8, 18, 33, 0.88), rgba(8, 18, 33, 0.58), rgba(8, 18, 33, 0.28));
 }
 
 .hero-home {
@@ -263,7 +264,7 @@ button {
 .eyebrow {
   margin: 0 0 12px;
   color: var(--red);
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   font-weight: 800;
   text-transform: uppercase;
 }
@@ -292,12 +293,12 @@ h3 {
 
 h1 {
   max-width: 760px;
-  font-size: clamp(2.5rem, 7vw, 5.2rem);
+  font-size: clamp(2.45rem, 6.5vw, 4.8rem);
   font-weight: 800;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.9rem, 3.5vw, 2.85rem);
   font-weight: 800;
 }
 
@@ -311,7 +312,7 @@ h3 {
   max-width: 680px;
   margin: 20px 0 0;
   color: #eef5fb;
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1rem, 1.8vw, 1.18rem);
 }
 
 .button-row {
@@ -353,9 +354,10 @@ h3 {
 }
 
 .trust-strip {
-  background: var(--navy);
-  color: var(--white);
-  padding: 22px 0;
+  background: var(--white);
+  color: var(--navy);
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .trust-strip__grid {
@@ -365,8 +367,8 @@ h3 {
 }
 
 .trust-strip__grid div {
-  border-left: 3px solid var(--amber);
-  padding-left: 16px;
+  padding: 4px 0 4px 16px;
+  border-left: 3px solid var(--red);
 }
 
 .trust-strip strong {
@@ -375,12 +377,12 @@ h3 {
 }
 
 .trust-strip span {
-  color: #c7d5e3;
+  color: var(--muted);
   font-size: 0.92rem;
 }
 
 .section {
-  padding: 88px 0;
+  padding: 78px 0;
 }
 
 .section--muted {
@@ -392,8 +394,44 @@ h3 {
 }
 
 .section-heading {
-  max-width: 760px;
-  margin-bottom: 36px;
+  max-width: 840px;
+  margin-bottom: 34px;
+}
+
+.section-heading .eyebrow,
+.split-copy > .eyebrow,
+.contact-band .contact-layout > div > .eyebrow {
+  margin-bottom: 8px;
+  color: var(--navy);
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.12;
+  text-transform: none;
+}
+
+.section-heading .eyebrow::after,
+.split-copy > .eyebrow::after,
+.contact-band .contact-layout > div > .eyebrow::after {
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 12px;
+  border-radius: 999px;
+  background: var(--amber);
+  content: "";
+}
+
+.testimonials .section-heading .eyebrow,
+.contact-band .contact-layout > div > .eyebrow,
+.cta-section .eyebrow,
+.hiring-final-cta .eyebrow {
+  color: var(--amber);
+}
+
+.testimonials .section-heading .eyebrow::after,
+.contact-band .contact-layout > div > .eyebrow::after,
+.cta-section .eyebrow::after,
+.hiring-final-cta .eyebrow::after {
+  background: var(--red);
 }
 
 .section-heading p:not(.eyebrow) {
@@ -416,7 +454,7 @@ h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
-  box-shadow: var(--shadow);
+  box-shadow: var(--soft-shadow);
 }
 
 .service-card img {
@@ -460,7 +498,7 @@ h3 {
   min-height: 430px;
   object-fit: cover;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: var(--soft-shadow);
 }
 
 .split-copy p {
@@ -501,11 +539,12 @@ h3 {
 }
 
 .feature-grid article {
-  min-height: 230px;
+  min-height: 210px;
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
+  box-shadow: var(--soft-shadow);
 }
 
 .feature-grid span {
@@ -537,6 +576,7 @@ h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--white);
+  box-shadow: var(--soft-shadow);
 }
 
 .logo-row {
@@ -563,7 +603,7 @@ h3 {
 
 .testimonial-frame {
   position: relative;
-  min-height: 230px;
+  min-height: 210px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.08);
@@ -748,6 +788,10 @@ h3 {
   border-radius: var(--radius);
   background: var(--navy);
   color: var(--white);
+}
+
+.contact-panel .eyebrow {
+  color: var(--amber);
 }
 
 .contact-links--large {
@@ -970,6 +1014,10 @@ h3 {
 
 .hiring-split .split-copy p {
   color: var(--muted);
+}
+
+.hiring-split .split-copy > .eyebrow {
+  color: var(--navy);
 }
 
 .hiring-process {
