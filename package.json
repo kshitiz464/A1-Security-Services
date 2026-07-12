@@ -13,7 +13,7 @@
     "static-site"
   ],
   "author": "Captain A1 Security Services",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "devDependencies": {
     "serve": "14.2.6"
   }

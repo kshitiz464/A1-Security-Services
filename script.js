@@ -69,6 +69,18 @@
     window.addEventListener("resize", syncMobileCallBar);
   }
 
+  const serviceSelect = document.querySelector("[data-service-select]");
+  if (serviceSelect instanceof HTMLSelectElement) {
+    const requestedService = new URLSearchParams(window.location.search).get("service");
+    const hasRequestedOption = Array.from(serviceSelect.options).some(
+      (option) => option.value === requestedService
+    );
+
+    if (requestedService && hasRequestedOption) {
+      serviceSelect.value = requestedService;
+    }
+  }
+
   document.querySelectorAll("[data-carousel]").forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
     const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
