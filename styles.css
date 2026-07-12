@@ -30,18 +30,36 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--white);
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 body[data-language-page] {
-  font-family: "Noto Sans Devanagari", "Poppins", Arial, sans-serif;
+  font-family: "Noto Sans Devanagari", "Inter", Arial, sans-serif;
 }
 
 body[data-language-page][data-active-language="en"] {
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+body[data-language-page] h1,
+body[data-language-page] h2,
+body[data-language-page] h3,
+body[data-language-page] .button,
+body[data-language-page] .site-nav a,
+body[data-language-page] .header-cta {
+  font-family: "Noto Sans Devanagari", "Manrope", "Inter", Arial, sans-serif;
+}
+
+body[data-language-page][data-active-language="en"] h1,
+body[data-language-page][data-active-language="en"] h2,
+body[data-language-page][data-active-language="en"] h3,
+body[data-language-page][data-active-language="en"] .button,
+body[data-language-page][data-active-language="en"] .site-nav a,
+body[data-language-page][data-active-language="en"] .header-cta {
+  font-family: "Manrope", "Inter", Arial, sans-serif;
 }
 
 img {
@@ -130,6 +148,7 @@ button {
   text-decoration: none;
   font-weight: 700;
   line-height: 1.15;
+  font-family: "Manrope", "Inter", Arial, sans-serif;
 }
 
 .brand img {
@@ -167,6 +186,7 @@ button {
   color: #e8eef5;
   text-decoration: none;
   font-weight: 600;
+  font-family: "Manrope", "Inter", Arial, sans-serif;
 }
 
 .site-nav a:hover,
@@ -187,6 +207,7 @@ button {
   font-weight: 800;
   white-space: nowrap;
   box-shadow: inset 0 0 0 1px rgba(31, 95, 134, 0.2);
+  font-family: "Manrope", "Inter", Arial, sans-serif;
 }
 
 .nav-toggle {
@@ -291,6 +312,7 @@ h2,
 h3 {
   margin: 0;
   line-height: 1.1;
+  font-family: "Manrope", "Inter", Arial, sans-serif;
 }
 
 h1 {
@@ -335,6 +357,7 @@ h3 {
   text-decoration: none;
   font-weight: 800;
   text-align: center;
+  font-family: "Manrope", "Inter", Arial, sans-serif;
 }
 
 .button--primary {
@@ -476,6 +499,8 @@ h3 {
   background: var(--white);
   box-shadow: var(--soft-shadow);
   transition: transform 180ms ease, box-shadow 180ms ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card:hover {
@@ -490,6 +515,9 @@ h3 {
 }
 
 .service-card div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 24px;
 }
 
@@ -499,9 +527,51 @@ h3 {
 }
 
 .service-card a {
+  margin-top: auto;
   color: var(--red);
   font-weight: 800;
   text-decoration: none;
+}
+
+.coverage-section {
+  background: linear-gradient(180deg, #f5f9fc 0%, #edf4f8 100%);
+}
+
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.coverage-grid article {
+  min-height: 210px;
+  padding: 22px;
+  border: 1px solid rgba(31, 95, 134, 0.16);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--soft-shadow);
+}
+
+.coverage-grid span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: rgba(31, 95, 134, 0.11);
+  color: var(--red);
+  font-weight: 800;
+}
+
+.coverage-grid h3 {
+  font-size: 1.08rem;
+}
+
+.coverage-grid p {
+  margin: 10px 0 0;
+  color: var(--muted);
 }
 
 .service-card a:hover {
@@ -1265,6 +1335,7 @@ h3 {
 
   .trust-strip__grid,
   .feature-grid,
+  .coverage-grid,
   .logo-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1395,6 +1466,7 @@ h3 {
 
   .trust-strip__grid,
   .feature-grid,
+  .coverage-grid,
   .credential-list,
   .logo-row,
   .form-grid,
