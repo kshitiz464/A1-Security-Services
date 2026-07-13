@@ -24,8 +24,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260713-ui" />
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260713-hero2" />
+  <script src="script.js?v=20260713-validation2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -54,7 +54,7 @@
   <main id="main-content">
     <section class="page-hero page-hero--contact hero-carousel" aria-labelledby="contact-hero-title" data-hero-carousel data-section-label="Contact Captain A1">
       <div class="hero-carousel__slides" aria-hidden="true">
-        <div class="hero-carousel__slide is-active" data-hero-slide><img src="images/FieldWork/saarth-pratham-wide.webp" alt="" fetchpriority="high" /></div>
+        <div class="hero-carousel__slide hero-carousel__slide--subject-right is-active" data-hero-slide><img src="images/FieldWork/security-guards-hero-v2.webp" alt="" fetchpriority="high" /></div>
         <div class="hero-carousel__slide" data-hero-slide><img src="images/FieldWork/samriddhi-dynasty-residential.webp" alt="" /></div>
         <div class="hero-carousel__slide hero-carousel__slide--center" data-hero-slide><img src="images/FieldWork/facility-parking-care-ai.webp" alt="" /></div>
       </div>
@@ -87,8 +87,8 @@
           <input type="hidden" name="subject" value="New enquiry from Captain A1 Security Services website" />
           <div class="form-heading"><span>Security enquiry</span><h3>Tell us about the requirement</h3></div>
           <div class="form-grid">
-            <label>Full name<input type="text" name="name" autocomplete="name" maxlength="80" required /></label>
-            <label>Phone number<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="20" pattern="[0-9+\-\s()]{7,20}" required /></label>
+            <label>Full name<input type="text" name="name" autocomplete="name" minlength="2" maxlength="80" required /></label>
+            <label>Mobile number<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="18" pattern="[0-9+() -]{10,18}" title="Enter a valid 10-digit Indian mobile number" required /></label>
           </div>
           <label>Email address<input type="email" name="email" autocomplete="email" maxlength="120" required /></label>
           <label>Service needed
@@ -124,7 +124,7 @@
           <p>Select a service below and it will be prepared in the enquiry form.</p>
         </div>
         <div class="enquiry-tile-grid">
-          <a class="enquiry-tile" href="contact.html?service=Security+Guard#enquiry"><img src="images/About-Image.jpg" alt="Security guards" loading="lazy" /><span><small>Site security</small><strong>Security Guards</strong></span></a>
+          <a class="enquiry-tile" href="contact.html?service=Security+Guard#enquiry"><img src="images/FieldWork/samriddhi-dynasty-guards.webp" alt="Captain A1 security guards" loading="lazy" /><span><small>Site security</small><strong>Security Guards</strong></span></a>
           <a class="enquiry-tile" href="contact.html?service=Lady+Guard#enquiry"><img src="images/FieldWork/samriddhi-dynasty-guards.webp" alt="Uniformed Captain A1 guards" loading="lazy" /><span><small>Professional presence</small><strong>Lady Guards</strong></span></a>
           <a class="enquiry-tile" href="contact.html?service=Gunman+Security#enquiry"><img src="images/s-1.jpg" alt="Armed security personnel" loading="lazy" /><span><small>Stronger deterrence</small><strong>Gunman Security</strong></span></a>
           <a class="enquiry-tile" href="contact.html?service=VIP+Protection#enquiry"><img src="images/Our Services/Executive Protection.jpg" alt="Veteran protection leadership" loading="lazy" /><span><small>Personal protection</small><strong>PSO and Bodyguard</strong></span></a>

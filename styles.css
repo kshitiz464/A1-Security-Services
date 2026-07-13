@@ -383,17 +383,18 @@ a {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(90deg, rgba(6, 23, 35, 0.94) 0%, rgba(6, 23, 35, 0.78) 46%, rgba(6, 23, 35, 0.25) 78%, rgba(6, 23, 35, 0.14) 100%);
+  background: rgba(6, 23, 35, 0.42);
   content: "";
 }
 
 .hero-home {
   min-height: 565px;
-  background-image: url("images/HeroBanner2.jpeg");
-  background-position: center 42%;
+  background-image: url("images/FieldWork/security-guards-hero-v2.webp");
+  background-position: center;
 }
 
 .hero__content {
+  position: relative;
   padding: 72px 0 78px;
 }
 
@@ -404,6 +405,7 @@ a {
 .hero h1,
 .page-hero h1 {
   color: var(--white);
+  text-shadow: 0 3px 20px rgba(3, 15, 24, 0.62);
 }
 
 .hero .eyebrow,
@@ -417,6 +419,7 @@ a {
   color: #e2eaee;
   font-size: 1.08rem;
   line-height: 1.75;
+  text-shadow: 0 2px 12px rgba(3, 15, 24, 0.72);
 }
 
 .hero__lead {
@@ -1150,7 +1153,7 @@ a {
 
 .hero-carousel__slide {
   opacity: 0;
-  transition: opacity 800ms ease;
+  transition: opacity 1200ms ease-in-out;
 }
 
 .hero-carousel__slide.is-active {
@@ -1159,7 +1162,13 @@ a {
 
 .hero-carousel__slide img {
   object-fit: cover;
-  object-position: center 42%;
+  object-position: center;
+  transform: scale(1.018);
+  transition: transform 6500ms ease-out;
+}
+
+.hero-carousel__slide.is-active img {
+  transform: scale(1);
 }
 
 .hero-carousel__slide--center img {
@@ -1202,7 +1211,7 @@ a {
 .icon-button--hero {
   width: 38px;
   height: 36px;
-  background: rgba(7, 27, 41, 0.5);
+  background: rgba(7, 27, 41, 0.72);
   backdrop-filter: blur(8px);
 }
 
@@ -1397,13 +1406,13 @@ a {
 }
 
 .page-hero--about {
-  background-image: url("images/About-Image.jpg");
-  background-position: center 40%;
+  background-image: url("images/FieldWork/security-guards-hero-v2.webp");
+  background-position: center;
 }
 
 .page-hero--contact {
-  background-image: url("images/HeroBanner2.jpeg");
-  background-position: center 42%;
+  background-image: url("images/FieldWork/security-guards-hero-v2.webp");
+  background-position: center;
 }
 
 .story-section {
@@ -1596,6 +1605,13 @@ a {
   font-weight: 700;
 }
 
+.field-group {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+  align-content: start;
+}
+
 .contact-form input,
 .contact-form select,
 .contact-form textarea {
@@ -1618,6 +1634,26 @@ a {
 .contact-form textarea:focus {
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(36, 95, 134, 0.12);
+}
+
+.contact-form input[aria-invalid="true"],
+.contact-form select[aria-invalid="true"],
+.contact-form textarea[aria-invalid="true"] {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(185, 53, 53, 0.1);
+}
+
+.field-error {
+  display: none;
+  margin-top: -3px;
+  color: var(--danger);
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.field-error:not(:empty) {
+  display: block;
 }
 
 .contact-form .button {
@@ -1790,7 +1826,7 @@ a {
   position: relative;
   padding: 86px 0;
   overflow: hidden;
-  background: var(--navy) url("images/HeroBanner2.jpeg") center / cover no-repeat;
+  background: var(--navy) url("images/FieldWork/security-guards-hero-v2.webp") center / cover no-repeat;
   color: var(--white);
   isolation: isolate;
 }
@@ -1799,7 +1835,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(90deg, rgba(7, 24, 36, 0.96), rgba(7, 24, 36, 0.78));
+  background: rgba(7, 24, 36, 0.56);
   content: "";
 }
 
@@ -1993,6 +2029,21 @@ a {
     grid-template-columns: 1fr auto;
   }
 
+  .site-header {
+    transition: transform 280ms ease, box-shadow 280ms ease;
+    will-change: transform;
+  }
+
+  .site-header.is-section-collapsed {
+    transform: translateY(-100%);
+    pointer-events: none;
+  }
+
+  .site-header.is-open {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
   .site-nav {
     position: absolute;
     top: 88px;
@@ -2022,9 +2073,11 @@ a {
   }
 
   .mobile-section-indicator {
-    position: sticky;
-    top: 88px;
-    z-index: 74;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 110;
     display: flex;
     min-height: 42px;
     align-items: center;
@@ -2035,7 +2088,17 @@ a {
     color: var(--navy);
     font-size: 0.73rem;
     font-weight: 800;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%);
+    transition: opacity 220ms ease, transform 280ms ease;
     text-transform: uppercase;
+  }
+
+  .mobile-section-indicator.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
   .mobile-section-indicator::before {
@@ -2046,15 +2109,54 @@ a {
     content: "";
   }
 
-  .mobile-section-indicator span {
+  .mobile-section-indicator [data-section-current] {
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
     opacity: 1;
+    text-overflow: ellipsis;
     transform: translateY(0);
     transition: opacity 140ms ease, transform 140ms ease;
+    white-space: nowrap;
   }
 
-  .mobile-section-indicator.is-changing span {
+  .mobile-section-indicator.is-changing [data-section-current] {
     opacity: 0;
     transform: translateY(-5px);
+  }
+
+  .mobile-section-menu {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--navy);
+    cursor: pointer;
+  }
+
+  .mobile-section-menu::before,
+  .mobile-section-menu::after,
+  .mobile-section-menu span {
+    position: absolute;
+    right: 7px;
+    width: 19px;
+    height: 2px;
+    background: currentColor;
+    content: "";
+  }
+
+  .mobile-section-menu::before {
+    top: 11px;
+  }
+
+  .mobile-section-menu span {
+    top: 17px;
+  }
+
+  .mobile-section-menu::after {
+    top: 23px;
   }
 
   .hero-carousel {
@@ -2063,7 +2165,11 @@ a {
   }
 
   .hero-carousel__slide img {
-    object-position: 58% center;
+    object-position: 62% center;
+  }
+
+  .hero-carousel__slide--subject-right img {
+    object-position: 72% center;
   }
 
   .hero-carousel__controls {
@@ -2078,7 +2184,7 @@ a {
 
   .hero::before,
   .page-hero::before {
-    background: rgba(6, 23, 35, 0.76);
+    background: rgba(6, 23, 35, 0.52);
   }
 
   .trust-strip__grid {
@@ -2203,7 +2309,7 @@ a {
   }
 
   .mobile-section-indicator {
-    top: 76px;
+    top: 0;
     min-height: 39px;
     padding: 0 16px;
     font-size: 0.67rem;

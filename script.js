@@ -2,18 +2,21 @@
   const header = document.querySelector(".site-header");
   const navToggle = document.querySelector("[data-nav-toggle]");
   const navigation = document.getElementById("primary-navigation");
+  let requestSectionHeaderUpdate = () => {};
 
   if (header && navToggle && navigation) {
     navToggle.addEventListener("click", () => {
       const isOpen = navToggle.getAttribute("aria-expanded") === "true";
       navToggle.setAttribute("aria-expanded", String(!isOpen));
       header.classList.toggle("is-open", !isOpen);
+      window.requestAnimationFrame(requestSectionHeaderUpdate);
     });
 
     navigation.addEventListener("click", (event) => {
       if (event.target instanceof HTMLAnchorElement) {
         navToggle.setAttribute("aria-expanded", "false");
         header.classList.remove("is-open");
+        window.requestAnimationFrame(requestSectionHeaderUpdate);
       }
     });
   }
@@ -112,7 +115,7 @@
     const startAutoPlay = () => {
       stopAutoPlay();
       if (!reduceMotion) {
-        timer = window.setInterval(() => showSlide(activeIndex + 1), 6500);
+        timer = window.setInterval(() => showSlide(activeIndex + 1), 5200);
       }
     };
 
@@ -130,8 +133,6 @@
         startAutoPlay();
       });
     });
-    carousel.addEventListener("mouseenter", stopAutoPlay);
-    carousel.addEventListener("mouseleave", startAutoPlay);
     carousel.addEventListener("focusin", stopAutoPlay);
     carousel.addEventListener("focusout", startAutoPlay);
     document.addEventListener("visibilitychange", () => {
@@ -152,10 +153,11 @@
     const indicator = document.createElement("div");
     indicator.className = "mobile-section-indicator";
     indicator.setAttribute("aria-live", "polite");
-    indicator.innerHTML = '<span data-section-current></span>';
+    indicator.innerHTML = '<span data-section-current></span><button type="button" class="mobile-section-menu" aria-label="Open site navigation"><span aria-hidden="true"></span></button>';
     header.insertAdjacentElement("afterend", indicator);
 
     const currentLabel = indicator.querySelector("[data-section-current]");
+    const sectionMenu = indicator.querySelector(".mobile-section-menu");
     let activeLabel = "";
     let framePending = false;
     let changeTimer;
@@ -168,7 +170,7 @@
         return;
       }
 
-      const activationLine = indicator.getBoundingClientRect().bottom + 16;
+      const activationLine = header.offsetHeight + 8;
       let activeSection = visibleSections[0];
       visibleSections.forEach((section) => {
         if (section.getBoundingClientRect().top <= activationLine) {
@@ -177,6 +179,11 @@
       });
 
       const nextLabel = activeSection.getAttribute("data-section-label") || "";
+      const firstLabel = visibleSections[0].getAttribute("data-section-label") || "";
+      const shouldReplaceHeader = nextLabel !== firstLabel && !header.classList.contains("is-open");
+      header.classList.toggle("is-section-collapsed", shouldReplaceHeader);
+      indicator.classList.toggle("is-active", shouldReplaceHeader);
+
       if (!nextLabel || nextLabel === activeLabel) {
         return;
       }
@@ -196,6 +203,16 @@
         window.requestAnimationFrame(updateSectionIndicator);
       }
     };
+
+    requestSectionHeaderUpdate = requestIndicatorUpdate;
+
+    sectionMenu?.addEventListener("click", () => {
+      header.classList.remove("is-section-collapsed");
+      indicator.classList.remove("is-active");
+      if (navToggle && navToggle.getAttribute("aria-expanded") !== "true") {
+        navToggle.click();
+      }
+    });
 
     window.addEventListener("scroll", requestIndicatorUpdate, { passive: true });
     window.addEventListener("resize", requestIndicatorUpdate);
@@ -242,8 +259,120 @@
   });
 
   document.querySelectorAll("[data-secure-form]").forEach((form) => {
+    form.noValidate = true;
+    const fields = Array.from(
+      form.querySelectorAll('input:not([type="hidden"]):not([name="botcheck"]), select, textarea')
+    );
+    const validationErrors = new Map();
+    const formStatus = form.querySelector("[data-form-status]");
+
+    const getValidationMessage = (field) => {
+      const value = field.value.trim();
+
+      if (field.required && !value) {
+        if (field instanceof HTMLSelectElement) {
+          return "Please choose an option.";
+        }
+        return "This field is required.";
+      }
+
+      if (field.name === "name" && value) {
+        const letters = value.match(/\p{L}/gu) || [];
+        const hasOnlyNameCharacters = /^[\p{L}\p{M}\s.'-]+$/u.test(value);
+        if (!hasOnlyNameCharacters || letters.length < 2) {
+          return "Enter a valid name using letters, spaces, apostrophes, periods, or hyphens.";
+        }
+      }
+
+      if (field.name === "phone" && value) {
+        const digits = value.replace(/\D/g, "");
+        let mobileNumber = digits;
+        if (digits.length === 12 && digits.startsWith("91")) {
+          mobileNumber = digits.slice(2);
+        } else if (digits.length === 11 && digits.startsWith("0")) {
+          mobileNumber = digits.slice(1);
+        }
+        if (!/^[6-9]\d{9}$/.test(mobileNumber)) {
+          return "Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.";
+        }
+      }
+
+      if (field.name === "email" && value && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+        return "Enter a valid email address, such as name@example.com.";
+      }
+
+      if (field instanceof HTMLTextAreaElement && value && value.length < 10) {
+        return "Please provide at least 10 characters so we can understand the requirement.";
+      }
+
+      if (field.validity.typeMismatch) {
+        return "Please enter a valid value.";
+      }
+      if (field.validity.patternMismatch) {
+        return field.title || "Please use the requested format.";
+      }
+      if (field.validity.tooLong) {
+        return `Please use no more than ${field.maxLength} characters.`;
+      }
+      if (field.validity.rangeUnderflow) {
+        return "Please choose today or a future date.";
+      }
+
+      return "";
+    };
+
+    const validateField = (field, showMessage) => {
+      field.setCustomValidity("");
+      const message = getValidationMessage(field);
+      field.setCustomValidity(message);
+      const error = validationErrors.get(field);
+      const isValid = !message;
+
+      field.setAttribute("aria-invalid", String(!isValid));
+      if (error) {
+        error.textContent = showMessage ? message : "";
+      }
+      return isValid;
+    };
+
+    fields.forEach((field, fieldIndex) => {
+      const error = document.createElement("span");
+      const errorId = `form-${Array.from(document.forms).indexOf(form)}-${field.name || fieldIndex}-error`;
+      error.className = "field-error";
+      error.id = errorId;
+      error.setAttribute("aria-live", "polite");
+      const label = field.closest("label");
+      if (label?.parentElement) {
+        const fieldGroup = document.createElement("div");
+        fieldGroup.className = "field-group";
+        label.insertAdjacentElement("beforebegin", fieldGroup);
+        fieldGroup.append(label, error);
+      } else {
+        field.insertAdjacentElement("afterend", error);
+      }
+      validationErrors.set(field, error);
+      field.setAttribute("aria-describedby", [field.getAttribute("aria-describedby"), errorId].filter(Boolean).join(" "));
+
+      const revalidate = () => {
+        const wasInvalid = field.getAttribute("aria-invalid") === "true";
+        validateField(field, wasInvalid);
+        if (formStatus) {
+          formStatus.textContent = "";
+        }
+      };
+      field.addEventListener("input", revalidate);
+      field.addEventListener("change", revalidate);
+      field.addEventListener("blur", () => validateField(field, true));
+    });
+
+    const startDate = form.querySelector('input[type="date"][name="start_date"]');
+    if (startDate instanceof HTMLInputElement) {
+      const today = new Date();
+      const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000);
+      startDate.min = localToday.toISOString().split("T")[0];
+    }
+
     form.addEventListener("submit", (event) => {
-      const status = form.querySelector("[data-form-status]");
       const honeypot = form.querySelector('input[name="botcheck"]');
 
       if (honeypot instanceof HTMLInputElement && honeypot.checked) {
@@ -251,10 +380,18 @@
         return;
       }
 
-      if (!form.checkValidity()) {
+      let firstInvalidField;
+      fields.forEach((field) => {
+        if (!validateField(field, true) && !firstInvalidField) {
+          firstInvalidField = field;
+        }
+      });
+      if (firstInvalidField || !form.checkValidity()) {
         event.preventDefault();
-        status.textContent = "Please complete the required fields before sending.";
-        form.reportValidity();
+        if (formStatus) {
+          formStatus.textContent = "Please correct the highlighted fields before sending.";
+        }
+        firstInvalidField?.focus();
         return;
       }
 
@@ -264,7 +401,9 @@
         submitButton.textContent = "Sending...";
       }
 
-      status.textContent = "Sending your enquiry securely...";
+      if (formStatus) {
+        formStatus.textContent = "Sending your enquiry securely...";
+      }
     });
   });
 

@@ -37,8 +37,8 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260713-ui" />
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260713-hero2" />
+  <script src="script.js?v=20260713-validation2" defer></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -134,8 +134,8 @@
   <main id="main-content" class="home-page">
     <section class="hero hero-home hero-carousel" aria-labelledby="hero-title" data-hero-carousel data-section-label="Captain A1 Security Services">
       <div class="hero-carousel__slides" aria-hidden="true">
-        <div class="hero-carousel__slide is-active" data-hero-slide><img src="images/HeroBanner2.jpeg" alt="" fetchpriority="high" /></div>
-        <div class="hero-carousel__slide hero-carousel__slide--center" data-hero-slide><img src="images/FieldWork/samriddhi-dynasty-guards.webp" alt="" /></div>
+        <div class="hero-carousel__slide hero-carousel__slide--subject-right is-active" data-hero-slide><img src="images/FieldWork/security-guards-hero-v2.webp" alt="" fetchpriority="high" /></div>
+        <div class="hero-carousel__slide hero-carousel__slide--center" data-hero-slide><img src="images/FieldWork/saarth-pratham-main-gate.webp" alt="" /></div>
         <div class="hero-carousel__slide hero-carousel__slide--center" data-hero-slide><img src="images/FieldWork/housekeeping-team-wide-ai.webp" alt="" /></div>
       </div>
       <div class="section-shell hero__content">
@@ -173,7 +173,7 @@
     <section class="section introduction" aria-labelledby="about-title" data-section-label="About the company">
       <div class="section-shell split-layout split-layout--wide">
         <div class="split-media split-media--portrait">
-          <img src="images/About-Image.jpg" alt="Captain A1 supervisors briefing security personnel" loading="lazy" />
+          <img src="images/FieldWork/samriddhi-dynasty-guards.webp" alt="Captain A1 security guards at a residential deployment" loading="lazy" />
           <div class="image-caption"><strong>On-site supervision</strong><span>Briefing, discipline, and clear responsibility</span></div>
         </div>
         <div class="split-copy">
@@ -396,7 +396,7 @@
         <form class="contact-form contact-form--compact" action="https://api.web3forms.com/submit" method="POST" data-secure-form>
           <input type="hidden" name="access_key" value="d168c352-f6bc-468b-87ed-ca2ec63c9359" />
           <input type="hidden" name="subject" value="New homepage enquiry from Captain A1 Security Services" />
-          <div class="form-grid"><label>Full name<input type="text" name="name" autocomplete="name" maxlength="80" required /></label><label>Phone number<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="20" pattern="[0-9+\-\s()]{7,20}" required /></label></div>
+          <div class="form-grid"><label>Full name<input type="text" name="name" autocomplete="name" minlength="2" maxlength="80" required /></label><label>Mobile number<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="18" pattern="[0-9+() -]{10,18}" title="Enter a valid 10-digit Indian mobile number" required /></label></div>
           <div class="form-grid"><label>Site type<select name="site_type" required><option value="">Select site</option><option>Residential society</option><option>Office or commercial site</option><option>Industrial or warehouse site</option><option>Event or venue</option><option>Personal protection</option><option>Facility or housekeeping</option></select></label><label>Expected start date<input type="date" name="start_date" /></label></div>
           <label>Requirement<textarea name="message" rows="4" minlength="10" maxlength="800" placeholder="Location, shift, personnel count, or any immediate concern" required></textarea></label>
           <label class="honeypot" aria-hidden="true">Leave this field empty<input type="checkbox" name="botcheck" tabindex="-1" /></label>
