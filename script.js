@@ -72,17 +72,19 @@
     window.addEventListener("resize", syncMobileActionBar);
   }
 
-  const serviceSelect = document.querySelector("[data-service-select]");
-  if (serviceSelect instanceof HTMLSelectElement) {
-    const requestedService = new URLSearchParams(window.location.search).get("service");
+  const requestedService = new URLSearchParams(window.location.search).get("service");
+  document.querySelectorAll("[data-service-select]").forEach((serviceSelect) => {
+    if (!(serviceSelect instanceof HTMLSelectElement)) {
+      return;
+    }
+
     const hasRequestedOption = Array.from(serviceSelect.options).some(
       (option) => option.value === requestedService
     );
-
     if (requestedService && hasRequestedOption) {
       serviceSelect.value = requestedService;
     }
-  }
+  });
 
   document.querySelectorAll("[data-hero-carousel]").forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll("[data-hero-slide]"));
@@ -148,78 +150,105 @@
   });
 
   const labelledSections = Array.from(document.querySelectorAll("[data-section-label]"));
-  const main = document.querySelector("main");
-  if (header && main && labelledSections.length) {
-    const indicator = document.createElement("div");
-    indicator.className = "mobile-section-indicator";
-    indicator.setAttribute("aria-live", "polite");
-    indicator.innerHTML = '<span data-section-current></span><button type="button" class="mobile-section-menu" aria-label="Open site navigation"><span aria-hidden="true"></span></button>';
-    header.insertAdjacentElement("afterend", indicator);
+  const mobileStickyTitles = [];
+  labelledSections.forEach((section) => {
+    const titles = Array.from(section.querySelectorAll(".eyebrow")).filter(
+      (title) => title.closest("[data-section-label]") === section
+    );
+    const titleCandidates = titles.length ? titles : [section.querySelector("h1, h2, h3")].filter(Boolean);
+    titleCandidates.forEach((title) => {
+      const marker = document.createElement("span");
+      marker.className = "mobile-sticky-marker";
+      marker.setAttribute("aria-hidden", "true");
+      title.insertAdjacentElement("beforebegin", marker);
+      title.classList.add("mobile-sticky-title");
+      mobileStickyTitles.push({ marker, owner: title.closest("article") || section, title });
+    });
+  });
 
-    const currentLabel = indicator.querySelector("[data-section-current]");
-    const sectionMenu = indicator.querySelector(".mobile-section-menu");
-    let activeLabel = "";
+  if (header) {
+    let lastScrollY = Math.max(0, window.scrollY);
+    let direction = 0;
+    let directionTravel = 0;
     let framePending = false;
-    let changeTimer;
 
-    const isVisible = (element) => !element.hidden && element.getClientRects().length > 0;
-    const updateSectionIndicator = () => {
+    const setHeaderVisible = (isVisible) => {
+      const mustShow = header.classList.contains("is-open") || window.scrollY < 80;
+      const shouldShow = isVisible || mustShow;
+      header.classList.toggle("is-scroll-hidden", !shouldShow);
+      document.body.classList.toggle("mobile-header-visible", shouldShow);
+    };
+
+    const updateMobileHeader = () => {
       framePending = false;
-      const visibleSections = labelledSections.filter(isVisible);
-      if (!visibleSections.length) {
+      if (window.innerWidth > 860) {
+        header.classList.remove("is-scroll-hidden");
+        document.body.classList.remove("mobile-header-visible");
+        mobileStickyTitles.forEach(({ marker, title }) => {
+          marker.style.height = "0px";
+          title.classList.remove("is-pinned");
+        });
+        lastScrollY = Math.max(0, window.scrollY);
+        directionTravel = 0;
         return;
       }
 
-      const activationLine = header.offsetHeight + 8;
-      let activeSection = visibleSections[0];
-      visibleSections.forEach((section) => {
-        if (section.getBoundingClientRect().top <= activationLine) {
-          activeSection = section;
+      const nextScrollY = Math.max(0, window.scrollY);
+      const delta = nextScrollY - lastScrollY;
+      const nextDirection = Math.sign(delta);
+      if (nextDirection && nextDirection !== direction) {
+        direction = nextDirection;
+        directionTravel = 0;
+      }
+      directionTravel += delta;
+
+      if (header.classList.contains("is-open")) {
+        setHeaderVisible(true);
+      } else if (nextScrollY < 80 || directionTravel <= -12) {
+        setHeaderVisible(true);
+        directionTravel = 0;
+      } else if (directionTravel >= 18) {
+        setHeaderVisible(false);
+        directionTravel = 0;
+      }
+
+      const stickyTop = document.body.classList.contains("mobile-header-visible") ? header.offsetHeight : 0;
+      const visibleTitles = mobileStickyTitles.filter(({ marker }) => marker.getClientRects().length > 0);
+      let activeTitle = null;
+      visibleTitles.forEach((item) => {
+        if (item.owner.getBoundingClientRect().top <= stickyTop + 1) {
+          activeTitle = item;
         }
       });
 
-      const nextLabel = activeSection.getAttribute("data-section-label") || "";
-      const firstLabel = visibleSections[0].getAttribute("data-section-label") || "";
-      const shouldReplaceHeader = nextLabel !== firstLabel && !header.classList.contains("is-open");
-      header.classList.toggle("is-section-collapsed", shouldReplaceHeader);
-      indicator.classList.toggle("is-active", shouldReplaceHeader);
-
-      if (!nextLabel || nextLabel === activeLabel) {
-        return;
+      const main = document.querySelector("main");
+      if (main && main.getBoundingClientRect().bottom <= stickyTop + 50) {
+        activeTitle = null;
       }
 
-      activeLabel = nextLabel;
-      window.clearTimeout(changeTimer);
-      indicator.classList.add("is-changing");
-      changeTimer = window.setTimeout(() => {
-        currentLabel.textContent = nextLabel;
-        indicator.classList.remove("is-changing");
-      }, currentLabel.textContent ? 120 : 0);
+      mobileStickyTitles.forEach((item) => {
+        const isPinned = item === activeTitle;
+        if (isPinned && !item.title.classList.contains("is-pinned")) {
+          item.marker.style.height = `${item.title.getBoundingClientRect().height}px`;
+        } else if (!isPinned) {
+          item.marker.style.height = "0px";
+        }
+        item.title.classList.toggle("is-pinned", isPinned);
+      });
+      lastScrollY = nextScrollY;
     };
 
-    const requestIndicatorUpdate = () => {
+    const requestMobileHeaderUpdate = () => {
       if (!framePending) {
         framePending = true;
-        window.requestAnimationFrame(updateSectionIndicator);
+        window.requestAnimationFrame(updateMobileHeader);
       }
     };
 
-    requestSectionHeaderUpdate = requestIndicatorUpdate;
-
-    sectionMenu?.addEventListener("click", () => {
-      header.classList.remove("is-section-collapsed");
-      indicator.classList.remove("is-active");
-      if (navToggle && navToggle.getAttribute("aria-expanded") !== "true") {
-        navToggle.click();
-      }
-    });
-
-    window.addEventListener("scroll", requestIndicatorUpdate, { passive: true });
-    window.addEventListener("resize", requestIndicatorUpdate);
-    document.querySelectorAll("[data-language-switch]").forEach((button) => {
-      button.addEventListener("click", () => window.setTimeout(requestIndicatorUpdate, 0));
-    });
-    updateSectionIndicator();
+    requestSectionHeaderUpdate = requestMobileHeaderUpdate;
+    window.addEventListener("scroll", requestMobileHeaderUpdate, { passive: true });
+    window.addEventListener("resize", requestMobileHeaderUpdate);
+    updateMobileHeader();
   }
 
   document.querySelectorAll("[data-carousel]").forEach((carousel) => {
@@ -265,22 +294,64 @@
     );
     const validationErrors = new Map();
     const formStatus = form.querySelector("[data-form-status]");
+    const languageButtons = Array.from(form.querySelectorAll("[data-form-lang]"));
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    const isHindi = () => form.getAttribute("data-form-language") === "hi";
+    const formCopy = (english, hindi) => (isHindi() ? hindi : english);
+
+    const setFormLanguage = (language) => {
+      const activeLanguage = language === "hi" ? "hi" : "en";
+      form.setAttribute("data-form-language", activeLanguage);
+      form.setAttribute("lang", activeLanguage);
+
+      form.querySelectorAll("[data-form-copy]").forEach((element) => {
+        const translation = element.getAttribute(`data-${activeLanguage}`);
+        if (translation) {
+          element.textContent = translation;
+        }
+      });
+      form.querySelectorAll("[data-placeholder-en][data-placeholder-hi]").forEach((field) => {
+        field.setAttribute("placeholder", field.getAttribute(`data-placeholder-${activeLanguage}`) || "");
+      });
+      form.querySelectorAll("option[data-option-en][data-option-hi]").forEach((option) => {
+        option.textContent = option.getAttribute(`data-option-${activeLanguage}`) || option.textContent;
+      });
+      languageButtons.forEach((button) => {
+        const isActive = button.getAttribute("data-form-lang") === activeLanguage;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+      validationErrors.forEach((error, field) => {
+        if (error.textContent) {
+          field.setCustomValidity("");
+          error.textContent = getValidationMessage(field);
+          field.setCustomValidity(error.textContent);
+        }
+      });
+      if (formStatus) {
+        formStatus.textContent = "";
+      }
+    };
 
     const getValidationMessage = (field) => {
       const value = field.value.trim();
 
       if (field.required && !value) {
         if (field instanceof HTMLSelectElement) {
-          return "Please choose an option.";
+          return formCopy("Please choose an option.", "कृपया एक विकल्प चुनें।");
         }
-        return "This field is required.";
+        return formCopy("This field is required.", "यह जानकारी आवश्यक है।");
       }
 
       if (field.name === "name" && value) {
         const letters = value.match(/\p{L}/gu) || [];
         const hasOnlyNameCharacters = /^[\p{L}\p{M}\s.'-]+$/u.test(value);
         if (!hasOnlyNameCharacters || letters.length < 2) {
-          return "Enter a valid name using letters, spaces, apostrophes, periods, or hyphens.";
+          return formCopy(
+            "Enter a valid name using letters, spaces, apostrophes, periods, or hyphens.",
+            "कृपया अक्षरों और सामान्य विराम चिह्नों का उपयोग करके सही नाम दर्ज करें।"
+          );
         }
       }
 
@@ -293,29 +364,41 @@
           mobileNumber = digits.slice(1);
         }
         if (!/^[6-9]\d{9}$/.test(mobileNumber)) {
-          return "Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.";
+          return formCopy(
+            "Enter a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.",
+            "6, 7, 8 या 9 से शुरू होने वाला सही 10 अंकों का भारतीय मोबाइल नंबर दर्ज करें।"
+          );
         }
       }
 
       if (field.name === "email" && value && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
-        return "Enter a valid email address, such as name@example.com.";
+        return formCopy(
+          "Enter a valid email address, such as name@example.com.",
+          "सही ईमेल पता दर्ज करें, जैसे name@example.com।"
+        );
       }
 
       if (field instanceof HTMLTextAreaElement && value && value.length < 10) {
-        return "Please provide at least 10 characters so we can understand the requirement.";
+        return formCopy(
+          "Please provide at least 10 characters so we can understand the requirement.",
+          "आवश्यकता समझने के लिए कम से कम 10 अक्षर लिखें।"
+        );
       }
 
       if (field.validity.typeMismatch) {
-        return "Please enter a valid value.";
+        return formCopy("Please enter a valid value.", "कृपया सही जानकारी दर्ज करें।");
       }
       if (field.validity.patternMismatch) {
-        return field.title || "Please use the requested format.";
+        return formCopy(field.title || "Please use the requested format.", "कृपया मांगे गए प्रारूप का उपयोग करें।");
       }
       if (field.validity.tooLong) {
-        return `Please use no more than ${field.maxLength} characters.`;
+        return formCopy(
+          `Please use no more than ${field.maxLength} characters.`,
+          `${field.maxLength} से अधिक अक्षर न लिखें।`
+        );
       }
       if (field.validity.rangeUnderflow) {
-        return "Please choose today or a future date.";
+        return formCopy("Please choose today or a future date.", "आज या भविष्य की तारीख चुनें।");
       }
 
       return "";
@@ -365,6 +448,11 @@
       field.addEventListener("blur", () => validateField(field, true));
     });
 
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => setFormLanguage(button.getAttribute("data-form-lang")));
+    });
+    setFormLanguage(form.getAttribute("data-form-language"));
+
     const startDate = form.querySelector('input[type="date"][name="start_date"]');
     if (startDate instanceof HTMLInputElement) {
       const today = new Date();
@@ -389,20 +477,25 @@
       if (firstInvalidField || !form.checkValidity()) {
         event.preventDefault();
         if (formStatus) {
-          formStatus.textContent = "Please correct the highlighted fields before sending.";
+          formStatus.textContent = formCopy(
+            "Please correct the highlighted fields before sending.",
+            "भेजने से पहले चिन्हित जानकारी सही करें।"
+          );
         }
         firstInvalidField?.focus();
         return;
       }
 
-      const submitButton = form.querySelector('button[type="submit"]');
       if (submitButton instanceof HTMLButtonElement) {
         submitButton.disabled = true;
-        submitButton.textContent = "Sending...";
+        submitButton.textContent = formCopy("Sending...", "भेजा जा रहा है...");
       }
 
       if (formStatus) {
-        formStatus.textContent = "Sending your enquiry securely...";
+        formStatus.textContent = formCopy(
+          "Sending your enquiry securely...",
+          "आपकी पूछताछ सुरक्षित रूप से भेजी जा रही है..."
+        );
       }
     });
   });
