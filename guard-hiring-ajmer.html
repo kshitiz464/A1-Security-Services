@@ -36,7 +36,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260712-logo" />
+  <link rel="stylesheet" href="styles.css?v=20260713-ui" />
   <script src="script.js" defer></script>
 </head>
 <body data-language-page data-active-language="hi">
@@ -80,7 +80,7 @@
     </div>
 
     <div data-language-panel="hi">
-      <section class="hiring-hero" aria-labelledby="hiring-hero-title-hi">
+      <section class="hiring-hero" aria-labelledby="hiring-hero-title-hi" data-section-label="तुरंत गार्ड भर्ती">
         <div class="section-shell hiring-hero__grid">
           <div class="hiring-hero__copy">
             <p class="urgent-pill">अजमेर में तुरंत भर्ती</p>
@@ -107,7 +107,7 @@
         </div>
       </section>
 
-      <section class="section hiring-overview" id="details-hi" aria-labelledby="details-title-hi">
+      <section class="section hiring-overview" id="details-hi" aria-labelledby="details-title-hi" data-section-label="काम और भुगतान">
         <div class="section-shell">
           <div class="section-heading">
             <p class="eyebrow">गार्ड भर्ती</p>
@@ -137,7 +137,7 @@
         </div>
       </section>
 
-      <section class="section section--split hiring-split" aria-labelledby="call-title-hi">
+      <section class="section section--split hiring-split" aria-labelledby="call-title-hi" data-section-label="कॉल पर जानकारी">
         <div class="section-shell split-layout">
           <div class="split-media">
             <img src="images/security-1.jpg" alt="सिक्योरिटी गार्ड ड्यूटी पर" loading="lazy" />
@@ -157,7 +157,7 @@
         </div>
       </section>
 
-      <section class="section section--muted hiring-process" aria-labelledby="process-title-hi">
+      <section class="section section--muted hiring-process" aria-labelledby="process-title-hi" data-section-label="जुड़ने के कदम">
         <div class="section-shell">
           <div class="section-heading">
             <p class="eyebrow">आसान प्रक्रिया</p>
@@ -184,7 +184,7 @@
         </div>
       </section>
 
-      <section class="section hiring-final-cta" aria-labelledby="final-cta-title-hi">
+      <section class="section hiring-final-cta" aria-labelledby="final-cta-title-hi" data-section-label="अभी कॉल करें">
         <div class="section-shell hiring-final-cta__inner">
           <div>
             <p class="eyebrow">अजमेर गार्ड भर्ती</p>
@@ -197,7 +197,7 @@
     </div>
 
     <div data-language-panel="en" hidden>
-      <section class="hiring-hero" aria-labelledby="hiring-hero-title-en">
+      <section class="hiring-hero" aria-labelledby="hiring-hero-title-en" data-section-label="Urgent guard hiring">
         <div class="section-shell hiring-hero__grid">
           <div class="hiring-hero__copy">
             <p class="urgent-pill">Urgent hiring in Ajmer</p>
@@ -224,7 +224,7 @@
         </div>
       </section>
 
-      <section class="section hiring-overview" id="details-en" aria-labelledby="details-title-en">
+      <section class="section hiring-overview" id="details-en" aria-labelledby="details-title-en" data-section-label="Work and pay">
         <div class="section-shell">
           <div class="section-heading">
             <p class="eyebrow">Guard hiring</p>
@@ -254,7 +254,7 @@
         </div>
       </section>
 
-      <section class="section section--split hiring-split" aria-labelledby="call-title-en">
+      <section class="section section--split hiring-split" aria-labelledby="call-title-en" data-section-label="Call details">
         <div class="section-shell split-layout">
           <div class="split-media">
             <img src="images/security-1.jpg" alt="Security guard on duty" loading="lazy" />
@@ -274,7 +274,7 @@
         </div>
       </section>
 
-      <section class="section section--muted hiring-process" aria-labelledby="process-title-en">
+      <section class="section section--muted hiring-process" aria-labelledby="process-title-en" data-section-label="Joining steps">
         <div class="section-shell">
           <div class="section-heading">
             <p class="eyebrow">Simple process</p>
@@ -301,7 +301,7 @@
         </div>
       </section>
 
-      <section class="section hiring-final-cta" aria-labelledby="final-cta-title-en">
+      <section class="section hiring-final-cta" aria-labelledby="final-cta-title-en" data-section-label="Call now">
         <div class="section-shell hiring-final-cta__inner">
           <div>
             <p class="eyebrow">Ajmer guard hiring</p>
@@ -350,11 +350,9 @@
     </p>
   </footer>
 
-  <a
-    class="mobile-call-bar"
-    href="tel:+918003091425"
-    data-lang-hi="अभी कॉल करें: +91 8003091425"
-    data-lang-en="Call now: +91 8003091425"
-  >अभी कॉल करें: +91 8003091425</a>
+  <div class="mobile-action-bar">
+    <a href="tel:+918003091425" data-lang-hi="अभी कॉल करें" data-lang-en="Call now">अभी कॉल करें</a>
+    <a href="https://wa.me/918003091425?text=Hello%20Captain%20A1%2C%20I%20am%20interested%20in%20the%20guard%20job." target="_blank" rel="noopener">WhatsApp</a>
+  </div>
 </body>
 </html>

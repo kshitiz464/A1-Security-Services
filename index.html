@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     name="description"
-    content="Captain A1 Security Services provides trained guards, lady guards, gunmen, PSOs, event security, night patrolling, housekeeping, and facility support across Rajasthan."
+    content="Security guard services in Ajmer and Jaipur for residential communities, businesses, institutions, events, personal protection, patrolling, and facility support."
   />
   <meta name="theme-color" content="#0b2235" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -14,16 +14,16 @@
     content="default-src 'self'; base-uri 'self'; form-action https://api.web3forms.com; frame-src https://www.google.com; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; object-src 'none'; upgrade-insecure-requests"
   />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
-  <meta property="og:title" content="Captain A1 Security Services" />
+  <meta property="og:title" content="Security Guard Services in Ajmer and Jaipur | Captain A1" />
   <meta
     property="og:description"
     content="Disciplined security personnel and facility support for businesses, communities, institutions, events, and individuals across Rajasthan."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://captaina1.com/" />
-  <meta property="og:image" content="https://captaina1.com/images/HeroBanner2.jpeg" />
+  <meta property="og:image" content="https://captaina1.com/images/FieldWork/samriddhi-dynasty-guards.webp" />
   <meta name="twitter:card" content="summary_large_image" />
-  <title>Captain A1 Security Services | Professional Security in Rajasthan</title>
+  <title>Security Guard Services in Ajmer and Jaipur | Captain A1</title>
   <link rel="canonical" href="https://captaina1.com/" />
   <link rel="icon" type="image/png" sizes="48x48" href="/images/LOGO/captain-a1-icon-48.png" />
   <link rel="icon" type="image/png" sizes="96x96" href="/images/LOGO/captain-a1-icon-96.png" />
@@ -37,7 +37,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260712-logo" />
+  <link rel="stylesheet" href="styles.css?v=20260713-ui" />
   <script src="script.js" defer></script>
   <script type="application/ld+json">
     {
@@ -46,7 +46,7 @@
       "name": "Captain A1 Security Services",
       "url": "https://captaina1.com/",
       "logo": "https://captaina1.com/images/LOGO/captain-a1-logo.png",
-      "image": "https://captaina1.com/images/HeroBanner2.jpeg",
+      "image": "https://captaina1.com/images/FieldWork/samriddhi-dynasty-guards.webp",
       "telephone": "+91-8003091425",
       "email": "contact@captaina1.com",
       "address": {
@@ -56,6 +56,31 @@
         "addressRegion": "Rajasthan",
         "addressCountry": "IN"
       },
+      "location": [
+        {
+          "@type": "Place",
+          "name": "Jaipur Head Office",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "81/70 Patel Marg, Mansarover",
+            "addressLocality": "Jaipur",
+            "addressRegion": "Rajasthan",
+            "addressCountry": "IN"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Ajmer Office",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Love Kush Colony, Near Radha Rani Garden, Gulab Bari",
+            "addressLocality": "Ajmer",
+            "addressRegion": "Rajasthan",
+            "postalCode": "305001",
+            "addressCountry": "IN"
+          }
+        }
+      ],
       "areaServed": ["Ajmer", "Jaipur", "Rajasthan"],
       "serviceType": [
         "Security guards",
@@ -107,7 +132,12 @@
   </header>
 
   <main id="main-content" class="home-page">
-    <section class="hero hero-home" aria-labelledby="hero-title">
+    <section class="hero hero-home hero-carousel" aria-labelledby="hero-title" data-hero-carousel data-section-label="Captain A1 Security Services">
+      <div class="hero-carousel__slides" aria-hidden="true">
+        <div class="hero-carousel__slide is-active" data-hero-slide><img src="images/HeroBanner2.jpeg" alt="" fetchpriority="high" /></div>
+        <div class="hero-carousel__slide hero-carousel__slide--center" data-hero-slide><img src="images/FieldWork/samriddhi-dynasty-guards.webp" alt="" /></div>
+        <div class="hero-carousel__slide hero-carousel__slide--center" data-hero-slide><img src="images/FieldWork/housekeeping-team-wide-ai.webp" alt="" /></div>
+      </div>
       <div class="section-shell hero__content">
         <p class="eyebrow">Captain A1 Security Services</p>
         <h1 id="hero-title">Security services built on discipline.</h1>
@@ -116,22 +146,31 @@
         </p>
         <p class="hero__location">Serving Ajmer, Jaipur, and surrounding regions</p>
         <div class="button-row">
-          <a class="button button--primary" href="contact.html">Get a security plan</a>
-          <a class="button button--secondary" href="tel:+918003091425">Call +91 8003091425</a>
+          <a class="button button--primary" href="#quick-enquiry">Get a security plan</a>
+          <a class="button button--secondary" href="https://wa.me/918003091425?text=Hello%20Captain%20A1%2C%20I%20need%20security%20services." target="_blank" rel="noopener">WhatsApp us</a>
         </div>
+      </div>
+      <div class="hero-carousel__controls" aria-label="Homepage image carousel">
+        <button type="button" class="icon-button icon-button--hero" data-hero-prev aria-label="Previous image">&#8592;</button>
+        <div class="hero-carousel__dots" role="tablist" aria-label="Choose homepage image">
+          <button type="button" class="is-active" data-hero-dot aria-label="Show image 1"></button>
+          <button type="button" data-hero-dot aria-label="Show image 2"></button>
+          <button type="button" data-hero-dot aria-label="Show image 3"></button>
+        </div>
+        <button type="button" class="icon-button icon-button--hero" data-hero-next aria-label="Next image">&#8594;</button>
       </div>
     </section>
 
-    <section class="trust-strip" aria-label="Company highlights">
+    <section class="trust-strip" aria-label="Company highlights" data-section-label="Captain A1 Security Services">
       <div class="section-shell trust-strip__grid">
-        <div><strong>30+ years</strong><span>Leadership experience</span></div>
-        <div><strong>24/7</strong><span>Operational support</span></div>
+        <div><strong>Veteran-led</strong><span>Field leadership</span></div>
+        <div><strong>On-call</strong><span>Operational support</span></div>
         <div><strong>Verified</strong><span>Uniformed personnel</span></div>
         <div><strong>Flexible</strong><span>Permanent or short-term cover</span></div>
       </div>
     </section>
 
-    <section class="section introduction" aria-labelledby="about-title">
+    <section class="section introduction" aria-labelledby="about-title" data-section-label="About the company">
       <div class="section-shell split-layout split-layout--wide">
         <div class="split-media split-media--portrait">
           <img src="images/About-Image.jpg" alt="Captain A1 supervisors briefing security personnel" loading="lazy" />
@@ -157,7 +196,7 @@
       </div>
     </section>
 
-    <section class="section section--soft services-intro" id="services" aria-labelledby="services-title">
+    <section class="section section--soft services-intro" id="services" aria-labelledby="services-title" data-section-label="What we do">
       <div class="section-shell section-heading section-heading--center">
         <p class="eyebrow">What we do</p>
         <h2 id="services-title">Security arranged around the assignment.</h2>
@@ -165,7 +204,7 @@
       </div>
     </section>
 
-    <section class="service-showcase" aria-label="Featured security services">
+    <section class="service-showcase" aria-label="Featured security services" data-section-label="What we do">
       <article class="service-row">
         <div class="service-row__media">
           <img src="images/Our Services/Venue Security.jpg" alt="Captain A1 guards receiving an on-site briefing" loading="lazy" />
@@ -225,7 +264,7 @@
 
       <article class="service-row service-row--reverse service-row--soft">
         <div class="service-row__media">
-          <img src="images/s-2.jpg" alt="Residential facility requiring managed security and support staff" loading="lazy" />
+          <img src="images/FieldWork/housekeeping-team-wide-ai.webp" alt="Captain A1 housekeeping team in coordinated blue uniforms" loading="lazy" />
         </div>
         <div class="service-row__copy">
           <span class="service-number">04</span>
@@ -243,7 +282,27 @@
       </article>
     </section>
 
-    <section class="section service-directory-section" aria-labelledby="directory-title">
+    <section class="section client-evidence" aria-labelledby="client-evidence-title" data-section-label="Clients and deployments">
+      <div class="section-shell">
+        <div class="section-heading">
+          <p class="eyebrow">On duty in Ajmer</p>
+          <h2 id="client-evidence-title">Real teams. Real residential environments.</h2>
+          <p>Recent field photographs from residential assignments in Kotra, Ajmer.</p>
+        </div>
+        <div class="client-evidence__grid">
+          <article class="client-evidence__item">
+            <figure><img src="images/FieldWork/samriddhi-dynasty-guards.webp" alt="Two Captain A1 guards at Samriddhi Dynasty in Ajmer" loading="lazy" /></figure>
+            <div><span>Residential deployment | Kotra, Ajmer</span><h3>Samriddhi Dynasty</h3><p>Uniformed personnel supporting gate access and common-area security at a multi-storey residential community.</p></div>
+          </article>
+          <article class="client-evidence__item client-evidence__item--reverse">
+            <figure><img src="images/FieldWork/saarth-pratham-wide.webp" alt="Captain A1 guard at the Saarth Pratham entrance in Ajmer" loading="lazy" /></figure>
+            <div><span>Residential deployment | Kotra, Ajmer</span><h3>Saarth Pratham</h3><p>A visible security presence at the main residential entrance, supporting controlled access and day-to-day site operations.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section service-directory-section" aria-labelledby="directory-title" data-section-label="Complete service range">
       <div class="section-shell">
         <div class="section-heading">
           <p class="eyebrow">Complete service range</p>
@@ -260,7 +319,7 @@
       </div>
     </section>
 
-    <section class="section proof-band" aria-labelledby="why-title">
+    <section class="section proof-band" aria-labelledby="why-title" data-section-label="Why clients choose us">
       <div class="section-shell">
         <div class="section-heading section-heading--light">
           <p class="eyebrow">Why clients choose us</p>
@@ -275,7 +334,7 @@
       </div>
     </section>
 
-    <section class="section certifications" aria-labelledby="certifications-title">
+    <section class="section certifications" aria-labelledby="certifications-title" data-section-label="Registrations">
       <div class="section-shell">
         <div class="section-heading section-heading--center">
           <p class="eyebrow">Certifications</p>
@@ -288,16 +347,11 @@
           <p><strong>Home Guards Directorate</strong><span>3605 / HG HQ (S-Ce11) / 2024</span></p>
           <p><strong>PAN</strong><span>AAUFC2811M</span></p>
         </div>
-        <div class="logo-row" aria-label="Certification logos">
-          <img src="images/Certification/NSWA.webp" alt="NSWA certification logo" loading="lazy" />
-          <img src="images/Certification/SWA.webp" alt="SWA certification logo" loading="lazy" />
-          <img src="images/Certification/Regional Safety Association.webp" alt="Regional Safety Association logo" loading="lazy" />
-          <img src="images/Certification/MSHA.webp" alt="MSHA certification logo" loading="lazy" />
-        </div>
+        <p class="credential-note">Current registration and personnel documentation relevant to an assignment can be reviewed during client onboarding.</p>
       </div>
     </section>
 
-    <section class="section testimonials" aria-labelledby="testimonials-title" data-carousel>
+    <section class="section testimonials" aria-labelledby="testimonials-title" data-carousel data-section-label="Testimonials">
       <div class="section-shell testimonial-layout">
         <div class="section-heading section-heading--light">
           <p class="eyebrow">Testimonials</p>
@@ -307,15 +361,15 @@
           <div class="testimonial-frame">
             <article class="testimonial-slide is-active" data-carousel-slide>
               <p>“Captain A1 handled our event with calm coordination, visible discipline, and quick response whenever crowd movement changed.”</p>
-              <span>Event client</span>
+              <span>Event operations | Ajmer</span>
             </article>
             <article class="testimonial-slide" data-carousel-slide>
               <p>“Their team maintained access control and helped our operations staff keep the premises secure throughout the assignment.”</p>
-              <span>Venue manager</span>
+              <span>Residential venue | Ajmer</span>
             </article>
             <article class="testimonial-slide" data-carousel-slide>
               <p>“The protection team was punctual, discreet, and proactive. Their planning gave our leadership confidence during travel.”</p>
-              <span>Corporate client</span>
+              <span>Executive movement | Rajasthan</span>
             </article>
           </div>
           <div class="carousel-controls" aria-label="Testimonials controls">
@@ -331,7 +385,41 @@
       </div>
     </section>
 
-    <section class="section contact-cta" aria-labelledby="contact-title">
+    <section class="section home-enquiry" id="quick-enquiry" aria-labelledby="quick-enquiry-title" data-section-label="Request security">
+      <div class="section-shell home-enquiry__layout">
+        <div class="section-heading section-heading--light">
+          <p class="eyebrow">Quick enquiry</p>
+          <h2 id="quick-enquiry-title">Start with the site and expected start date.</h2>
+          <p>Send the essentials here. Our team can then discuss personnel, shifts, supervision, and availability.</p>
+          <div class="home-enquiry__actions"><a href="tel:+918003091425">Call +91 8003091425</a><a href="https://wa.me/918003091425?text=Hello%20Captain%20A1%2C%20I%20need%20security%20services." target="_blank" rel="noopener">Continue on WhatsApp</a></div>
+        </div>
+        <form class="contact-form contact-form--compact" action="https://api.web3forms.com/submit" method="POST" data-secure-form>
+          <input type="hidden" name="access_key" value="d168c352-f6bc-468b-87ed-ca2ec63c9359" />
+          <input type="hidden" name="subject" value="New homepage enquiry from Captain A1 Security Services" />
+          <div class="form-grid"><label>Full name<input type="text" name="name" autocomplete="name" maxlength="80" required /></label><label>Phone number<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="20" pattern="[0-9+\-\s()]{7,20}" required /></label></div>
+          <div class="form-grid"><label>Site type<select name="site_type" required><option value="">Select site</option><option>Residential society</option><option>Office or commercial site</option><option>Industrial or warehouse site</option><option>Event or venue</option><option>Personal protection</option><option>Facility or housekeeping</option></select></label><label>Expected start date<input type="date" name="start_date" /></label></div>
+          <label>Requirement<textarea name="message" rows="4" minlength="10" maxlength="800" placeholder="Location, shift, personnel count, or any immediate concern" required></textarea></label>
+          <label class="honeypot" aria-hidden="true">Leave this field empty<input type="checkbox" name="botcheck" tabindex="-1" /></label>
+          <p class="form-status" data-form-status aria-live="polite"></p>
+          <button class="button button--primary" type="submit">Send enquiry</button>
+          <p class="form-privacy">Your details are used only to respond to this enquiry.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section faq-section" aria-labelledby="faq-title" data-section-label="Common questions">
+      <div class="section-shell faq-layout">
+        <div class="section-heading"><p class="eyebrow">Common questions</p><h2 id="faq-title">Useful answers before deployment.</h2></div>
+        <div class="faq-list">
+          <details><summary>How is security service pricing decided?</summary><p>Pricing depends on location, duty hours, personnel profile, number of shifts, supervision, equipment, and assignment duration. We provide a requirement-based quotation after the first discussion.</p></details>
+          <details><summary>Can you provide temporary or event security?</summary><p>Yes. Permanent, short-term, event-based, day-shift, and night-shift requirements can be discussed subject to personnel availability.</p></details>
+          <details><summary>Do you provide armed guards and personal protection?</summary><p>Gunmen, PSOs, and bodyguards can be discussed for suitable assignments, subject to lawful licensing, documentation, role requirements, and availability.</p></details>
+          <details><summary>Which locations do you currently serve?</summary><p>Our current focus includes Ajmer and Jaipur, with selected assignments elsewhere in Rajasthan based on scale and supervision needs.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-cta" aria-labelledby="contact-title" data-section-label="Talk to our team">
       <div class="section-shell contact-cta__inner">
         <div>
           <p class="eyebrow">Talk to our team</p>
@@ -376,6 +464,6 @@
     </p>
   </footer>
 
-  <a class="mobile-call-bar" href="tel:+918003091425">Call now: +91 8003091425</a>
+  <div class="mobile-action-bar"><a href="tel:+918003091425">Call now</a><a href="https://wa.me/918003091425?text=Hello%20Captain%20A1%2C%20I%20need%20security%20services." target="_blank" rel="noopener">WhatsApp</a></div>
 </body>
 </html>

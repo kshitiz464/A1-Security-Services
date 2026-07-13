@@ -12,7 +12,7 @@
   <meta property="og:description" content="Request a tailored security or facility support plan from Captain A1." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://captaina1.com/contact.html" />
-  <meta property="og:image" content="https://captaina1.com/images/HeroBanner2.jpeg" />
+  <meta property="og:image" content="https://captaina1.com/images/FieldWork/saarth-pratham-wide.webp" />
   <title>Contact | Captain A1 Security Services</title>
   <link rel="canonical" href="https://captaina1.com/contact.html" />
   <link rel="icon" type="image/png" sizes="48x48" href="/images/LOGO/captain-a1-icon-48.png" />
@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260712-logo" />
+  <link rel="stylesheet" href="styles.css?v=20260713-ui" />
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -52,15 +52,21 @@
   </header>
 
   <main id="main-content">
-    <section class="page-hero page-hero--contact" aria-labelledby="contact-hero-title">
+    <section class="page-hero page-hero--contact hero-carousel" aria-labelledby="contact-hero-title" data-hero-carousel data-section-label="Contact Captain A1">
+      <div class="hero-carousel__slides" aria-hidden="true">
+        <div class="hero-carousel__slide is-active" data-hero-slide><img src="images/FieldWork/saarth-pratham-wide.webp" alt="" fetchpriority="high" /></div>
+        <div class="hero-carousel__slide" data-hero-slide><img src="images/FieldWork/samriddhi-dynasty-residential.webp" alt="" /></div>
+        <div class="hero-carousel__slide hero-carousel__slide--center" data-hero-slide><img src="images/FieldWork/facility-parking-care-ai.webp" alt="" /></div>
+      </div>
       <div class="section-shell">
         <p class="eyebrow">Contact Captain A1</p>
-        <h1 id="contact-hero-title">Start with the site. We will plan the security.</h1>
+        <h1 id="contact-hero-title">Plan the right security for your site.</h1>
         <p>Tell us what needs protection, when coverage should begin, and the kind of presence you need.</p>
       </div>
+      <div class="hero-carousel__controls" aria-label="Contact page image carousel"><button type="button" class="icon-button icon-button--hero" data-hero-prev aria-label="Previous image">&#8592;</button><div class="hero-carousel__dots" role="tablist" aria-label="Choose contact image"><button type="button" class="is-active" data-hero-dot aria-label="Show image 1"></button><button type="button" data-hero-dot aria-label="Show image 2"></button><button type="button" data-hero-dot aria-label="Show image 3"></button></div><button type="button" class="icon-button icon-button--hero" data-hero-next aria-label="Next image">&#8594;</button></div>
     </section>
 
-    <section class="section enquiry-section" id="enquiry" aria-labelledby="enquiry-title">
+    <section class="section enquiry-section" id="enquiry" aria-labelledby="enquiry-title" data-section-label="Security enquiry">
       <div class="section-shell enquiry-layout">
         <div class="contact-intro">
           <p class="eyebrow">Speak with our team</p>
@@ -68,6 +74,7 @@
           <p class="lead-copy">A useful first conversation covers the location, type of site, duty hours, number of personnel, expected start date, and any specific risks.</p>
           <div class="contact-detail-list">
             <a href="tel:+918003091425"><span>Call</span><strong>+91 8003091425</strong></a>
+            <a href="https://wa.me/918003091425?text=Hello%20Captain%20A1%2C%20I%20need%20security%20services." target="_blank" rel="noopener"><span>WhatsApp</span><strong>Start a conversation</strong></a>
             <a href="mailto:contact@captaina1.com"><span>Email</span><strong>contact@captaina1.com</strong></a>
             <a href="#jaipur-head-office"><span>Jaipur Head Office</span><strong>81/70 Patel Marg, Mansarover, Jaipur</strong></a>
             <div><span>Ajmer Office</span><strong>Love Kush Colony, Near Radha Rani Garden, Gulab Bari, Ajmer, Rajasthan 305001</strong></div>
@@ -109,7 +116,7 @@
       </div>
     </section>
 
-    <section class="section section--soft enquiry-services" aria-labelledby="service-choice-title">
+    <section class="section section--soft enquiry-services" aria-labelledby="service-choice-title" data-section-label="Choose a service">
       <div class="section-shell">
         <div class="section-heading section-heading--center">
           <p class="eyebrow">Choose your requirement</p>
@@ -118,7 +125,7 @@
         </div>
         <div class="enquiry-tile-grid">
           <a class="enquiry-tile" href="contact.html?service=Security+Guard#enquiry"><img src="images/About-Image.jpg" alt="Security guards" loading="lazy" /><span><small>Site security</small><strong>Security Guards</strong></span></a>
-          <a class="enquiry-tile" href="contact.html?service=Lady+Guard#enquiry"><img src="images/HeroBanner2.jpeg" alt="Male and female security personnel" loading="lazy" /><span><small>Professional presence</small><strong>Lady Guards</strong></span></a>
+          <a class="enquiry-tile" href="contact.html?service=Lady+Guard#enquiry"><img src="images/FieldWork/samriddhi-dynasty-guards.webp" alt="Uniformed Captain A1 guards" loading="lazy" /><span><small>Professional presence</small><strong>Lady Guards</strong></span></a>
           <a class="enquiry-tile" href="contact.html?service=Gunman+Security#enquiry"><img src="images/s-1.jpg" alt="Armed security personnel" loading="lazy" /><span><small>Stronger deterrence</small><strong>Gunman Security</strong></span></a>
           <a class="enquiry-tile" href="contact.html?service=VIP+Protection#enquiry"><img src="images/Our Services/Executive Protection.jpg" alt="Veteran protection leadership" loading="lazy" /><span><small>Personal protection</small><strong>PSO and Bodyguard</strong></span></a>
           <a class="enquiry-tile" href="contact.html?service=Event+Security#enquiry"><img src="images/Our Services/Venue Security.jpg" alt="Guards receiving a venue briefing" loading="lazy" /><span><small>Crowd and access</small><strong>Event Security</strong></span></a>
@@ -127,7 +134,7 @@
       </div>
     </section>
 
-    <section class="section map-section map-section--head-office" id="jaipur-head-office" aria-labelledby="jaipur-map-title">
+    <section class="section map-section map-section--head-office" id="jaipur-head-office" aria-labelledby="jaipur-map-title" data-section-label="Jaipur Head Office">
       <div class="section-shell map-layout">
         <div>
           <p class="eyebrow">Jaipur Head Office</p>
@@ -140,7 +147,7 @@
       </div>
     </section>
 
-    <section class="section map-section" aria-labelledby="map-title">
+    <section class="section map-section" aria-labelledby="map-title" data-section-label="Ajmer Office">
       <div class="section-shell map-layout">
         <div>
           <p class="eyebrow">Ajmer Office</p>
@@ -153,10 +160,10 @@
       </div>
     </section>
 
-    <section class="section contact-cta" aria-labelledby="urgent-title">
+    <section class="section contact-cta" aria-labelledby="urgent-title" data-section-label="Urgent assignment">
       <div class="section-shell contact-cta__inner">
         <div><p class="eyebrow">Urgent assignment?</p><h2 id="urgent-title">Call the operations team directly.</h2><p>For immediate guard replacement, event cover, or a time-sensitive deployment, speak with us by phone.</p></div>
-        <a class="button button--primary" href="tel:+918003091425">Call +91 8003091425</a>
+        <div class="button-row"><a class="button button--primary" href="tel:+918003091425">Call +91 8003091425</a><a class="button button--outline-dark" href="https://wa.me/918003091425?text=Hello%20Captain%20A1%2C%20I%20have%20an%20urgent%20security%20requirement." target="_blank" rel="noopener">WhatsApp</a></div>
       </div>
     </section>
   </main>
@@ -169,6 +176,6 @@
     </div>
     <p class="copyright">&copy; <span data-year>2026</span> Captain A1 Security Services. All rights reserved. <span class="legal-warning">Unauthorized copying, reuse, impersonation, or misrepresentation is strictly prohibited and may result in legal action.</span></p>
   </footer>
-  <a class="mobile-call-bar" href="tel:+918003091425">Call now: +91 8003091425</a>
+  <div class="mobile-action-bar"><a href="tel:+918003091425">Call now</a><a href="https://wa.me/918003091425?text=Hello%20Captain%20A1%2C%20I%20need%20security%20services." target="_blank" rel="noopener">WhatsApp</a></div>
 </body>
 </html>
