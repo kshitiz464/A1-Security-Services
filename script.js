@@ -177,6 +177,51 @@
     let directionAnchorY = lastScrollY;
     let framePending = false;
     let settleTimer = 0;
+    let activeStickyTitle = null;
+    let pendingStickyTitle = null;
+    let stickyTitleTimer = 0;
+
+    const applyStickyTitle = (nextTitle) => {
+      if (activeStickyTitle === nextTitle) {
+        return;
+      }
+
+      if (activeStickyTitle) {
+        activeStickyTitle.marker.style.height = "0px";
+        activeStickyTitle.title.classList.remove("is-pinned", "is-entering");
+      }
+
+      activeStickyTitle = nextTitle;
+      if (!activeStickyTitle) {
+        return;
+      }
+
+      activeStickyTitle.sourceHeight = activeStickyTitle.title.getBoundingClientRect().height;
+      activeStickyTitle.marker.style.height = `${activeStickyTitle.sourceHeight}px`;
+      activeStickyTitle.title.classList.add("is-pinned", "is-entering");
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => activeStickyTitle?.title.classList.remove("is-entering"));
+      });
+    };
+
+    const scheduleStickyTitle = (nextTitle) => {
+      if (nextTitle === activeStickyTitle) {
+        window.clearTimeout(stickyTitleTimer);
+        pendingStickyTitle = null;
+        return;
+      }
+      if (nextTitle === pendingStickyTitle) {
+        return;
+      }
+
+      window.clearTimeout(stickyTitleTimer);
+      pendingStickyTitle = nextTitle;
+      stickyTitleTimer = window.setTimeout(() => {
+        const confirmedTitle = pendingStickyTitle;
+        pendingStickyTitle = null;
+        applyStickyTitle(confirmedTitle);
+      }, activeStickyTitle ? 180 : 100);
+    };
 
     const setHeaderVisible = (isVisible) => {
       const mustShow = header.classList.contains("is-open") || window.scrollY < 80;
@@ -195,10 +240,9 @@
       if (window.innerWidth > 860) {
         header.classList.remove("is-scroll-hidden");
         document.body.classList.remove("mobile-header-visible");
-        mobileStickyTitles.forEach(({ marker, title }) => {
-          marker.style.height = "0px";
-          title.classList.remove("is-pinned");
-        });
+        window.clearTimeout(stickyTitleTimer);
+        pendingStickyTitle = null;
+        applyStickyTitle(null);
         lastScrollY = Math.max(0, window.scrollY);
         directionAnchorY = lastScrollY;
         return;
@@ -236,15 +280,7 @@
         activeTitle = null;
       }
 
-      mobileStickyTitles.forEach((item) => {
-        const isPinned = item === activeTitle;
-        if (isPinned && !item.title.classList.contains("is-pinned")) {
-          item.marker.style.height = `${item.sourceHeight}px`;
-        } else if (!isPinned) {
-          item.marker.style.height = "0px";
-        }
-        item.title.classList.toggle("is-pinned", isPinned);
-      });
+      scheduleStickyTitle(activeTitle);
       lastScrollY = nextScrollY;
     };
 

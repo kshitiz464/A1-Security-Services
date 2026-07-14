@@ -36,8 +36,8 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260713-ios-reviews" />
-  <script src="script.js?v=20260713-ios-reviews" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260714-mobile-proof" />
+  <script src="script.js?v=20260714-mobile-proof" defer></script>
 </head>
 <body data-language-page data-active-language="hi">
   <a
@@ -137,22 +137,43 @@
         </div>
       </section>
 
-      <section class="section section--split hiring-split" aria-labelledby="call-title-hi" data-section-label="कॉल पर जानकारी">
+      <section class="section section--split hiring-split" aria-labelledby="call-title-hi" data-section-label="आवेदन की जानकारी">
         <div class="section-shell split-layout">
           <div class="split-media">
             <img src="images/security-1.jpg" alt="सिक्योरिटी गार्ड ड्यूटी पर" loading="lazy" />
           </div>
           <div class="split-copy">
             <p class="eyebrow">अभी कॉल करें</p>
-            <h2 id="call-title-hi">कॉल पर यह जानकारी बताएं.</h2>
+            <h2 id="call-title-hi">अपनी जानकारी भेजें या कॉल करें.</h2>
             <ul class="check-list">
               <li>अपना नाम और उम्र</li>
               <li>अजमेर में आपका स्थान</li>
+              <li>शैक्षणिक योग्यता: 10वीं, 12वीं या स्नातक</li>
               <li>गार्ड का अनुभव, यदि है</li>
               <li>कब से ड्यूटी शुरू कर सकते हैं</li>
               <li>फुल टाइम या कॉन्ट्रैक्ट में रुचि</li>
             </ul>
-            <a class="button button--primary button--call" href="tel:+918003091425">गार्ड भर्ती के लिए कॉल करें</a>
+            <form class="contact-form guard-application-form" action="https://api.web3forms.com/submit" method="POST" data-secure-form data-form-language="hi">
+              <input type="hidden" name="access_key" value="d168c352-f6bc-468b-87ed-ca2ec63c9359" />
+              <input type="hidden" name="subject" value="New guard job application from Captain A1 website" />
+              <h3>गार्ड भर्ती के लिए आवेदन</h3>
+              <div class="form-grid">
+                <label>पूरा नाम<input type="text" name="name" autocomplete="name" minlength="2" maxlength="80" required /></label>
+                <label>मोबाइल नंबर<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="18" pattern="[0-9+() -]{10,18}" required /></label>
+              </div>
+              <label>शैक्षणिक योग्यता
+                <select name="qualification" required>
+                  <option value="">योग्यता चुनें</option>
+                  <option value="10th">10वीं तक</option>
+                  <option value="12th">12वीं तक</option>
+                  <option value="Graduate or above">स्नातक या उससे अधिक</option>
+                </select>
+              </label>
+              <label class="honeypot" aria-hidden="true">इसे खाली छोड़ें<input type="checkbox" name="botcheck" tabindex="-1" /></label>
+              <p class="form-status" data-form-status aria-live="polite"></p>
+              <button class="button button--primary" type="submit">आवेदन भेजें</button>
+            </form>
+            <a class="text-link guard-application-call" href="tel:+918003091425">या गार्ड भर्ती के लिए कॉल करें: +91 8003091425 <span aria-hidden="true">&#8594;</span></a>
           </div>
         </div>
       </section>
@@ -254,22 +275,43 @@
         </div>
       </section>
 
-      <section class="section section--split hiring-split" aria-labelledby="call-title-en" data-section-label="Call details">
+      <section class="section section--split hiring-split" aria-labelledby="call-title-en" data-section-label="Application details">
         <div class="section-shell split-layout">
           <div class="split-media">
             <img src="images/security-1.jpg" alt="Security guard on duty" loading="lazy" />
           </div>
           <div class="split-copy">
             <p class="eyebrow">Call now</p>
-            <h2 id="call-title-en">Share these details on the call.</h2>
+            <h2 id="call-title-en">Send your details or call us.</h2>
             <ul class="check-list">
               <li>Your name and age</li>
               <li>Your location in Ajmer</li>
+              <li>Education: 10th, 12th, or graduation</li>
               <li>Security guard experience, if any</li>
               <li>When you can start duty</li>
               <li>Interest in full-time or contract work</li>
             </ul>
-            <a class="button button--primary button--call" href="tel:+918003091425">Call for guard hiring</a>
+            <form class="contact-form guard-application-form" action="https://api.web3forms.com/submit" method="POST" data-secure-form data-form-language="en">
+              <input type="hidden" name="access_key" value="d168c352-f6bc-468b-87ed-ca2ec63c9359" />
+              <input type="hidden" name="subject" value="New guard job application from Captain A1 website" />
+              <h3>Apply for guard duty</h3>
+              <div class="form-grid">
+                <label>Full name<input type="text" name="name" autocomplete="name" minlength="2" maxlength="80" required /></label>
+                <label>Mobile number<input type="tel" name="phone" autocomplete="tel" inputmode="tel" maxlength="18" pattern="[0-9+() -]{10,18}" required /></label>
+              </div>
+              <label>Highest qualification
+                <select name="qualification" required>
+                  <option value="">Select qualification</option>
+                  <option value="10th">Up to 10th</option>
+                  <option value="12th">Up to 12th</option>
+                  <option value="Graduate or above">Graduate or above</option>
+                </select>
+              </label>
+              <label class="honeypot" aria-hidden="true">Leave this field empty<input type="checkbox" name="botcheck" tabindex="-1" /></label>
+              <p class="form-status" data-form-status aria-live="polite"></p>
+              <button class="button button--primary" type="submit">Send application</button>
+            </form>
+            <a class="text-link guard-application-call" href="tel:+918003091425">Or call for guard hiring: +91 8003091425 <span aria-hidden="true">&#8594;</span></a>
           </div>
         </div>
       </section>
