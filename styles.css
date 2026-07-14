@@ -1505,7 +1505,7 @@ a {
   right: 0;
   left: 0;
   z-index: 3;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   padding: 0 clamp(12px, 2.5vw, 34px);
@@ -1531,12 +1531,24 @@ a {
 }
 
 .icon-button--hero {
-  width: 42px;
-  height: 42px;
-  border-color: rgba(255, 255, 255, 0.42);
-  background: rgba(7, 27, 41, 0.42);
+  width: 36px;
+  height: 52px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1;
   pointer-events: auto;
-  backdrop-filter: blur(5px);
+  text-shadow: 0 2px 8px rgba(3, 15, 24, 0.9);
+  backdrop-filter: none;
+}
+
+.icon-button--hero:hover {
+  background: transparent;
+  color: var(--white);
+  transform: scale(1.12);
 }
 
 .page-hero .section-shell {
@@ -2656,6 +2668,7 @@ a {
   }
 
   .hero-carousel__controls {
+    display: flex;
     top: 23%;
     right: 0;
     left: 0;
@@ -2923,8 +2936,8 @@ a {
   }
 
   .icon-button--hero {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 48px;
   }
 
   .hero__lead,
