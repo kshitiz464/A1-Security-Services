@@ -1501,17 +1501,20 @@ a {
 
 .hero-carousel__controls {
   position: absolute;
-  right: max(32px, calc((100% - var(--shell)) / 2));
-  bottom: 28px;
+  top: 50%;
+  right: 0;
+  left: 0;
   z-index: 3;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  padding: 0 clamp(12px, 2.5vw, 34px);
+  pointer-events: none;
+  transform: translateY(-50%);
 }
 
 .hero-carousel__dots {
-  display: flex;
-  gap: 7px;
+  display: none;
 }
 
 .hero-carousel__dots button {
@@ -1528,10 +1531,12 @@ a {
 }
 
 .icon-button--hero {
-  width: 38px;
-  height: 36px;
-  background: rgba(7, 27, 41, 0.72);
-  backdrop-filter: blur(8px);
+  width: 42px;
+  height: 42px;
+  border-color: rgba(255, 255, 255, 0.42);
+  background: rgba(7, 27, 41, 0.42);
+  pointer-events: auto;
+  backdrop-filter: blur(5px);
 }
 
 .page-hero .section-shell {
@@ -2651,9 +2656,11 @@ a {
   }
 
   .hero-carousel__controls {
-    right: 24px;
-    top: 18px;
+    top: 23%;
+    right: 0;
+    left: 0;
     bottom: auto;
+    padding: 0 12px;
   }
 
   .hero-home {
@@ -2899,10 +2906,11 @@ a {
   }
 
   .hero-carousel__controls {
-    right: 16px;
-    top: 16px;
+    top: 22%;
+    right: 0;
+    left: 0;
     bottom: auto;
-    gap: 9px;
+    padding: 0 10px;
   }
 
   .hero-home .button-row {
@@ -2915,8 +2923,8 @@ a {
   }
 
   .icon-button--hero {
-    width: 36px;
-    height: 34px;
+    width: 38px;
+    height: 38px;
   }
 
   .hero__lead,
