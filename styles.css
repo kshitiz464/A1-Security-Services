@@ -2130,6 +2130,69 @@ a {
   border-left: 0;
 }
 
+.contact-presence {
+  margin-top: 28px;
+}
+
+.contact-presence .eyebrow {
+  margin-bottom: 7px;
+}
+
+.contact-presence h2 {
+  max-width: none;
+  font-size: clamp(1.85rem, 2.7vw, 2.4rem);
+}
+
+.presence-list {
+  margin-top: 17px;
+  border-top: 1px solid var(--line);
+}
+
+.presence-list a {
+  display: block;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+}
+
+.presence-list > a > span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.presence-list strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--navy);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.presence-list small {
+  display: inline-block;
+  margin-top: 7px;
+  color: var(--blue);
+  font-size: 0.67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.presence-list small span {
+  display: inline-block;
+  margin-left: 3px;
+  transition: transform 180ms ease;
+}
+
+.presence-list a:hover small span,
+.presence-list a:focus-visible small span {
+  transform: translateX(3px);
+}
+
 .contact-page .contact-form {
   gap: 11px;
 }
@@ -3320,6 +3383,18 @@ a {
   .contact-detail-list > div {
     grid-template-columns: 1fr;
     gap: 5px;
+  }
+
+  .contact-presence {
+    margin-top: 25px;
+  }
+
+  .contact-presence h2 {
+    font-size: 1.8rem;
+  }
+
+  .presence-list strong {
+    font-size: 0.76rem;
   }
 
   .enquiry-tile,

@@ -11,9 +11,10 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta
     http-equiv="Content-Security-Policy"
-    content="default-src 'self'; base-uri 'self'; form-action https://api.web3forms.com; frame-src https://www.google.com; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; object-src 'none'; upgrade-insecure-requests"
+    content="default-src 'self'; base-uri 'self'; form-action https://api.web3forms.com; frame-src https://www.google.com https://www.googletagmanager.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' https://www.googletagmanager.com; object-src 'none'; upgrade-insecure-requests"
   />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
+  <script src="gtm-bootstrap.js"></script>
   <meta property="og:title" content="अजमेर में सिक्योरिटी गार्ड की तुरंत भर्ती" />
   <meta
     property="og:description"
@@ -36,10 +37,11 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260714-minimal-arrows" />
-  <script src="script.js?v=20260714-minimal-arrows" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260715-presence-gtm" />
+  <script src="script.js?v=20260715-presence-gtm" defer></script>
 </head>
 <body data-language-page data-active-language="hi">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W59N8ZMC" height="0" width="0" title="Google Tag Manager"></iframe></noscript>
   <a
     class="skip-link"
     href="#main-content"

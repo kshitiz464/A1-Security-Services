@@ -11,9 +11,10 @@
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta
     http-equiv="Content-Security-Policy"
-    content="default-src 'self'; base-uri 'self'; form-action https://api.web3forms.com; frame-src https://www.google.com; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; object-src 'none'; upgrade-insecure-requests"
+    content="default-src 'self'; base-uri 'self'; form-action https://api.web3forms.com; frame-src https://www.google.com https://www.googletagmanager.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' https://www.googletagmanager.com; object-src 'none'; upgrade-insecure-requests"
   />
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
+  <script src="gtm-bootstrap.js"></script>
   <meta property="og:title" content="Security Guard Services in Ajmer and Jaipur | Captain A1" />
   <meta
     property="og:description"
@@ -37,8 +38,8 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="styles.css?v=20260714-minimal-arrows" />
-  <script src="script.js?v=20260714-minimal-arrows" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260715-presence-gtm" />
+  <script src="script.js?v=20260715-presence-gtm" defer></script>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -79,9 +80,20 @@
             "postalCode": "305001",
             "addressCountry": "IN"
           }
+        },
+        {
+          "@type": "Place",
+          "name": "Pushkar Office",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "The Lake City, Tilora Road, Kadel, Nagaur-Jaipur Bypass",
+            "addressLocality": "Pushkar",
+            "addressRegion": "Rajasthan",
+            "addressCountry": "IN"
+          }
         }
       ],
-      "areaServed": ["Ajmer", "Jaipur", "Rajasthan"],
+      "areaServed": ["Ajmer", "Jaipur", "Pushkar", "Rajasthan"],
       "serviceType": [
         "Security guards",
         "Lady security guards",
@@ -95,6 +107,7 @@
   </script>
 </head>
 <body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W59N8ZMC" height="0" width="0" title="Google Tag Manager"></iframe></noscript>
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <div class="utility-bar">
@@ -470,7 +483,8 @@
           <details><summary>How is security service pricing decided?</summary><p>Pricing depends on location, duty hours, personnel profile, number of shifts, supervision, equipment, and assignment duration. We provide a requirement-based quotation after the first discussion.</p></details>
           <details><summary>Can you provide temporary or event security?</summary><p>Yes. Permanent, short-term, event-based, day-shift, and night-shift requirements can be discussed subject to personnel availability.</p></details>
           <details><summary>Do you provide armed guards and personal protection?</summary><p>Gunmen, PSOs, and bodyguards can be discussed for suitable assignments, subject to lawful licensing, documentation, role requirements, and availability.</p></details>
-          <details><summary>Which locations do you currently serve?</summary><p>Our current focus includes Ajmer and Jaipur, with selected assignments elsewhere in Rajasthan based on scale and supervision needs.</p></details>
+          <details><summary>How many guards does Captain A1 have?</summary><p>Captain A1 has a guard strength of 150+ trained personnel. Deployment availability changes with active site assignments, so we confirm the right number and profile of guards after discussing your requirement.</p></details>
+          <details><summary>Which locations do you currently serve?</summary><p>Our offices are in Ajmer, Jaipur, and Pushkar. We can also discuss selected assignments elsewhere in Rajasthan based on scale and supervision needs.</p></details>
         </div>
       </div>
     </section>
@@ -512,6 +526,7 @@
         <a href="mailto:contact@captaina1.com">contact@captaina1.com</a>
         <a href="contact.html#jaipur-head-office">Jaipur Head Office: 81/70 Patel Marg, Mansarover, Jaipur</a>
         <span>Ajmer Office: Gulab Bari, Ajmer, Rajasthan 305001</span>
+        <a href="contact.html#pushkar-office">Pushkar Office: Tilora Road, Kadel, Pushkar</a>
       </div>
     </div>
     <p class="copyright">
