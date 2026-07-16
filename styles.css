@@ -690,29 +690,6 @@ a {
   transform: translateX(4px);
 }
 
-.services-intro {
-  padding-top: 72px;
-  padding-bottom: 26px;
-}
-
-.services-intro .section-heading {
-  margin-bottom: 0;
-}
-
-.services-intro .section-heading h2 {
-  max-width: 760px;
-  margin-inline: auto;
-}
-
-.services-intro .section-heading p:not(.eyebrow) {
-  max-width: 640px;
-  margin-top: 16px;
-}
-
-.service-directory-section {
-  padding-top: 0;
-}
-
 .what-we-do-section {
   padding-top: 72px;
 }
@@ -3103,7 +3080,7 @@ a {
     display: flex;
     overflow-x: auto;
     gap: 14px;
-    padding-bottom: 8px;
+    padding-bottom: 12px;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
@@ -3117,12 +3094,47 @@ a {
     scroll-snap-align: start;
   }
 
+  .what-we-do-section {
+    padding-top: 42px;
+    padding-bottom: 48px;
+  }
+
+  .what-we-do-section .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .what-we-do-section .section-heading h2 {
+    font-size: clamp(2.05rem, 9.5vw, 2.7rem);
+  }
+
+  .service-card__media {
+    height: clamp(188px, 29svh, 220px);
+    aspect-ratio: auto;
+  }
+
   .service-card__body {
-    padding: 18px 17px 20px;
+    padding: 13px 17px 16px;
+  }
+
+  .service-card__body .service-number {
+    margin-bottom: 9px;
+    font-size: 1rem;
   }
 
   .service-card__body h3 {
-    font-size: 1.65rem;
+    font-size: 1.42rem;
+    line-height: 1.12;
+  }
+
+  .service-card__body > p:not(.eyebrow) {
+    margin-top: 9px;
+    font-size: 0.9rem;
+    line-height: 1.42;
+  }
+
+  .service-card__body .text-link {
+    padding-top: 13px;
+    font-size: 0.86rem;
   }
 
   .trust-strip__grid {
