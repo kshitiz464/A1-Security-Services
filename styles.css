@@ -756,6 +756,10 @@ a {
   padding-top: 22px;
 }
 
+.is-hidden {
+  display: none !important;
+}
+
 .service-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
