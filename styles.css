@@ -691,11 +691,22 @@ a {
 }
 
 .services-intro {
-  padding-bottom: 44px;
+  padding-top: 72px;
+  padding-bottom: 26px;
 }
 
 .services-intro .section-heading {
   margin-bottom: 0;
+}
+
+.services-intro .section-heading h2 {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.services-intro .section-heading p:not(.eyebrow) {
+  max-width: 640px;
+  margin-top: 16px;
 }
 
 .service-directory-section {
