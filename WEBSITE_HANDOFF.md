@@ -214,6 +214,13 @@ GTM container:
 - `gtm-bootstrap.js` loads GTM from every page.
 - A noscript GTM iframe exists immediately after the opening body tag on every page.
 
+Google Ads global site tag:
+
+- Ads ID: `AW-18297382444`
+- Every public page loads `https://www.googletagmanager.com/gtag/js?id=AW-18297382444`.
+- `google-ads-tag.js` initializes `window.dataLayer`, defines `gtag()`, and calls `gtag("config", "AW-18297382444")`.
+- Keep the initializer in the local JS file instead of inline script so the CSP can remain strict without adding `unsafe-inline`.
+
 Pages that currently include GTM/CSP:
 
 - `index.html`
