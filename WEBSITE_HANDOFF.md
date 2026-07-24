@@ -280,6 +280,12 @@ Current SEO work includes:
 - Location and service content for Ajmer, Jaipur, and Pushkar.
 - Google review and Justdial excerpts shown on the homepage.
 
+AI/tool crawler policy:
+
+- `robots.txt` intentionally allows general crawlers and explicitly allows OpenAI/ChatGPT and Google/Gemini-related crawlers so teammates can use ChatGPT, Gemini, and similar tools to read the public website for brochure, content, and website-analysis work.
+- Explicitly allowed agents include `OAI-SearchBot`, `ChatGPT-User`, `GPTBot`, `OAI-AdsBot`, `Google-Extended`, `Googlebot`, `GoogleOther`, and `Google-CloudVertexBot`.
+- Do not add `noindex`, `nofollow`, `noai`, `noimageai`, or crawler blocks unless the client specifically wants to restrict AI/search access.
+
 Google Ads headline terms added in homepage source include:
 
 - Commercial Security Agency
