@@ -72,68 +72,16 @@
     window.addEventListener("resize", syncMobileActionBar);
   }
 
-  // Custom Compact Multi-Select Dropdown logic
-  document.querySelectorAll("[data-multiselect]").forEach((container) => {
-    const trigger = container.querySelector("[data-multiselect-trigger]");
-    const dropdown = container.querySelector("[data-multiselect-dropdown]");
-    const labelSpan = container.querySelector("[data-multiselect-label]");
-    const checkboxes = Array.from(container.querySelectorAll('input[type="checkbox"]'));
-
-    if (!trigger || !dropdown || !labelSpan) {
-      return;
-    }
-
-    const updateLabel = () => {
-      const checkedBoxes = checkboxes.filter((cb) => cb.checked);
-      const isHindi = document.body.getAttribute("data-active-language") === "hi" || document.documentElement.lang === "hi";
-
-      if (checkedBoxes.length === 0) {
-        const placeholder = labelSpan.getAttribute(isHindi ? "data-placeholder-hi" : "data-placeholder-en") || "Select services...";
-        labelSpan.textContent = placeholder;
-      } else if (checkedBoxes.length <= 2) {
-        const names = checkedBoxes.map((cb) => {
-          const textSpan = cb.nextElementSibling;
-          return textSpan?.textContent?.trim() || cb.value;
-        });
-        labelSpan.textContent = names.join(", ");
-      } else {
-        labelSpan.textContent = `${checkedBoxes.length} ${isHindi ? "सेवाएं चुनी गईं" : "services selected"}`;
-      }
-    };
-
-    trigger.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isOpen = !dropdown.hidden;
-      // Close any other open dropdowns
-      document.querySelectorAll("[data-multiselect-dropdown]").forEach((d) => (d.hidden = true));
-      document.querySelectorAll("[data-multiselect-trigger]").forEach((t) => t.setAttribute("aria-expanded", "false"));
-
-      dropdown.hidden = isOpen;
-      trigger.setAttribute("aria-expanded", String(!isOpen));
-    });
-
-    checkboxes.forEach((cb) => {
-      cb.addEventListener("change", updateLabel);
-    });
-
-    updateLabel();
-  });
-
-  // Close multiselect popovers when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest("[data-multiselect]")) {
-      document.querySelectorAll("[data-multiselect-dropdown]").forEach((d) => (d.hidden = true));
-      document.querySelectorAll("[data-multiselect-trigger]").forEach((t) => t.setAttribute("aria-expanded", "false"));
-    }
-  });
-
   const requestedService = new URLSearchParams(window.location.search).get("service");
   if (requestedService) {
-    document.querySelectorAll("[data-multiselect]").forEach((container) => {
-      const targetCheckbox = container.querySelector(`input[value="${CSS.escape(requestedService)}"]`);
-      if (targetCheckbox instanceof HTMLInputElement) {
-        targetCheckbox.checked = true;
-        targetCheckbox.dispatchEvent(new Event("change"));
+    document.querySelectorAll("[data-service-select]").forEach((serviceSelect) => {
+      if (serviceSelect instanceof HTMLSelectElement) {
+        const hasRequestedOption = Array.from(serviceSelect.options).some(
+          (option) => option.value === requestedService
+        );
+        if (hasRequestedOption) {
+          serviceSelect.value = requestedService;
+        }
       }
     });
   }
