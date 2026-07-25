@@ -2042,6 +2042,135 @@ a {
   width: 100%;
 }
 
+/* Button Story Link with background effect & animation */
+.button--story-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  border: 1px solid var(--navy-mid);
+  border-radius: 50px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(11, 34, 53, 0.18);
+  transition: all 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  animation: story-pulse 3s infinite ease-in-out;
+}
+
+.button--story-link:hover {
+  background: var(--blue-dark);
+  border-color: var(--blue);
+  color: var(--white);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 22px rgba(11, 34, 53, 0.28);
+}
+
+.button--story-link .story-arrow {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+
+.button--story-link:hover .story-arrow {
+  transform: translateX(5px);
+}
+
+@keyframes story-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 14px rgba(11, 34, 53, 0.18);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(36, 95, 134, 0.45);
+  }
+}
+
+/* Multi-select Service Option Pills */
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-label-text {
+  color: #35454f;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.contact-form--compact .field-label-text {
+  color: #d4dfe5;
+}
+
+.services-options-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.service-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--paper);
+  color: var(--navy);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: all 180ms ease;
+}
+
+.contact-form--compact .service-pill {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--white);
+}
+
+.service-pill:hover {
+  border-color: var(--blue);
+}
+
+.service-pill input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+
+.service-pill:has(input[type="checkbox"]:checked) {
+  border-color: var(--blue);
+  background: var(--soft-blue);
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.contact-form--compact .service-pill:has(input[type="checkbox"]:checked) {
+  border-color: var(--copper);
+  background: var(--navy-mid);
+  color: var(--white);
+}
+
+/* Structured Bottom Review Actions */
+.review-controls-arrows {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.review-bottom-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
 .honeypot {
   position: absolute;
   left: -10000px;
