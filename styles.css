@@ -489,6 +489,41 @@ a {
   color: var(--white);
 }
 
+.button--story-link {
+  margin-top: 14px;
+  border: 1px solid var(--copper);
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 58%, var(--copper) 100%);
+  box-shadow: 0 10px 26px rgba(11, 34, 53, 0.2);
+  color: var(--white);
+  animation: story-glow-pulse 2.8s ease-in-out infinite;
+}
+
+.button--story-link:hover {
+  border-color: #d8b88f;
+  box-shadow: 0 14px 34px rgba(183, 131, 77, 0.32);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.button--story-link .story-arrow {
+  transition: transform 180ms ease;
+}
+
+.button--story-link:hover .story-arrow {
+  transform: translateX(5px);
+}
+
+@keyframes story-glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 10px 26px rgba(11, 34, 53, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 12px 32px rgba(183, 131, 77, 0.34);
+  }
+}
+
 .trust-strip {
   border-bottom: 1px solid var(--line);
   background: var(--white);
@@ -730,7 +765,7 @@ a {
 }
 
 .service-card__body h3 {
-  margin-top: 12px;
+  margin-top: 0;
   font-size: 1.84rem;
 }
 
@@ -1200,13 +1235,6 @@ a {
   font-size: 0.72rem;
 }
 
-.google-rating .review-screening-note {
-  grid-column: 1 / -1;
-  margin-top: 5px;
-  color: #d8b88f;
-  font-weight: 700;
-}
-
 .google-stars,
 .google-review-card__stars {
   color: #f4bd4f;
@@ -1246,6 +1274,19 @@ a {
 
 .review-carousel__controls > div {
   gap: 8px;
+}
+
+.review-bottom-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.review-bottom-actions .button {
+  min-height: 42px;
+  padding: 9px 16px;
+  font-size: 0.78rem;
 }
 
 .icon-button--review {
@@ -2866,6 +2907,14 @@ a {
     margin: 0 0 0 8px;
   }
 
+  .review-bottom-actions {
+    margin-top: 26px;
+  }
+
+  .introduction .split-media {
+    display: none !important;
+  }
+
   .client-evidence__item {
     min-height: 0;
     grid-template-columns: 1fr;
@@ -2909,6 +2958,36 @@ a {
 
   .what-we-do-section {
     padding-top: 60px;
+  }
+
+  .what-we-do-section .section-heading,
+  .certifications .section-heading {
+    text-align: left;
+  }
+
+  .what-we-do-section .section-heading--center,
+  .certifications .section-heading--center {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .faq-section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .faq-list summary {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-size: 1.28rem;
+  }
+
+  .faq-list summary::after {
+    top: 16px;
+  }
+
+  .faq-list details p {
+    padding-bottom: 18px;
   }
 
   .testimonial-layout .section-heading {
@@ -3101,6 +3180,7 @@ a {
 
   .what-we-do-section .section-heading {
     margin-bottom: 24px;
+    text-align: left;
   }
 
   .what-we-do-section .section-heading h2 {
@@ -3114,11 +3194,6 @@ a {
 
   .service-card__body {
     padding: 13px 17px 16px;
-  }
-
-  .service-card__body .service-number {
-    margin-bottom: 9px;
-    font-size: 1rem;
   }
 
   .service-card__body h3 {
