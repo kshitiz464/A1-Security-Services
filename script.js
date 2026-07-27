@@ -73,24 +73,18 @@
   }
 
   const requestedService = new URLSearchParams(window.location.search).get("service");
-  if (requestedService) {
-    document.querySelectorAll("[data-service-select]").forEach((serviceSelect) => {
-      if (serviceSelect instanceof HTMLSelectElement) {
-        const hasRequestedOption = Array.from(serviceSelect.options).some(
-          (option) => option.value === requestedService
-        );
-        if (hasRequestedOption) {
-          serviceSelect.value = requestedService;
-        }
-      }
-    });
-    document.querySelectorAll("[data-services-grid]").forEach((grid) => {
-      const targetCheckbox = grid.querySelector(`input[value="${CSS.escape(requestedService)}"]`);
-      if (targetCheckbox instanceof HTMLInputElement) {
-        targetCheckbox.checked = true;
-      }
-    });
-  }
+  document.querySelectorAll("[data-service-select]").forEach((serviceSelect) => {
+    if (!(serviceSelect instanceof HTMLSelectElement)) {
+      return;
+    }
+
+    const hasRequestedOption = Array.from(serviceSelect.options).some(
+      (option) => option.value === requestedService
+    );
+    if (requestedService && hasRequestedOption) {
+      serviceSelect.value = requestedService;
+    }
+  });
 
   document.querySelectorAll("[data-hero-carousel]").forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll("[data-hero-slide]"));
