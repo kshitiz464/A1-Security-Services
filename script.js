@@ -86,6 +86,21 @@
     }
   });
 
+  document.querySelectorAll("[data-service-directory-toggle]").forEach((toggle) => {
+    const panelId = toggle.getAttribute("aria-controls");
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!(toggle instanceof HTMLButtonElement) || !panel) {
+      return;
+    }
+
+    toggle.addEventListener("click", () => {
+      const willOpen = toggle.getAttribute("aria-expanded") !== "true";
+      toggle.setAttribute("aria-expanded", String(willOpen));
+      toggle.textContent = willOpen ? "Hide services" : "More services";
+      panel.classList.toggle("is-open", willOpen);
+    });
+  });
+
   document.querySelectorAll("[data-hero-carousel]").forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll("[data-hero-slide]"));
     const dots = Array.from(carousel.querySelectorAll("[data-hero-dot]"));
