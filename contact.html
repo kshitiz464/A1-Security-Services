@@ -94,25 +94,21 @@
             <label><span data-form-copy data-en="Address / Location" data-hi="पता / स्थान">Address / Location</span><input type="text" name="address" autocomplete="street-address" maxlength="200" data-placeholder-en="City, area, or site address" data-placeholder-hi="शहर, क्षेत्र या साइट का पता" placeholder="City, area, or site address" required /></label>
           </div>
           <label><span data-form-copy data-en="Number of people needed" data-hi="आवश्यक कर्मचारियों की संख्या">Number of people needed</span><input type="number" name="people_count" min="1" max="500" data-placeholder-en="e.g. 5" data-placeholder-hi="जैसे 5" placeholder="e.g. 5" required /></label>
-          <div class="custom-multiselect" data-multiselect>
+          <div class="form-field-group">
             <span class="field-label-text" data-form-copy data-en="Services needed (Select multiple)" data-hi="आवश्यक सेवाएं (एक से अधिक चुनें)">Services needed (Select multiple)</span>
-            <button type="button" class="multiselect-trigger" data-multiselect-trigger aria-expanded="false">
-              <span data-multiselect-label data-placeholder-en="Select services..." data-placeholder-hi="सेवाएं चुनें...">Select services...</span>
-              <b aria-hidden="true">&#9662;</b>
-            </button>
-            <div class="multiselect-dropdown" data-multiselect-dropdown hidden>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Security Guard" /><span data-form-copy data-en="Security Guard" data-hi="सुरक्षा गार्ड">Security Guard</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Lady Guard" /><span data-form-copy data-en="Lady Guard / Lady Bouncer" data-hi="महिला गार्ड / महिला बाउंसर">Lady Guard / Lady Bouncer</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Gunman Security" /><span data-form-copy data-en="Gunman Security" data-hi="गनमैन सुरक्षा">Gunman Security</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="VIP Protection" /><span data-form-copy data-en="PSO / Bodyguard / VIP Protection" data-hi="पीएसओ / बॉडीगार्ड / वीआईपी सुरक्षा">PSO / Bodyguard / VIP Protection</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Event Security" /><span data-form-copy data-en="Event Security / Bouncers" data-hi="कार्यक्रम सुरक्षा / बाउंसर">Event Security / Bouncers</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Residential Security" /><span data-form-copy data-en="Residential Security" data-hi="आवासीय सुरक्षा">Residential Security</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Commercial Security" /><span data-form-copy data-en="Commercial / Office Security" data-hi="व्यावसायिक / कार्यालय सुरक्षा">Commercial / Office Security</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Industrial Security" /><span data-form-copy data-en="Industrial / Warehouse Security" data-hi="औद्योगिक / गोदाम सुरक्षा">Industrial / Warehouse Security</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Institutional Security" /><span data-form-copy data-en="School / Hospital / Institution Security" data-hi="स्कूल / अस्पताल / संस्थान सुरक्षा">School / Hospital / Institution Security</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Night Patrolling" /><span data-form-copy data-en="Night Patrolling" data-hi="रात्रि गश्त">Night Patrolling</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Facility Support" /><span data-form-copy data-en="Housekeeping / Facility Support" data-hi="हाउसकीपिंग / सुविधा सहायता">Housekeeping / Facility Support</span></label>
-              <label class="multiselect-option"><input type="checkbox" name="services[]" value="Other" /><span data-form-copy data-en="Other" data-hi="अन्य">Other</span></label>
+            <div class="services-options-grid" data-services-grid>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Security Guard" /><span data-form-copy data-en="Security Guard" data-hi="सुरक्षा गार्ड">Security Guard</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Lady Guard" /><span data-form-copy data-en="Lady Guard / Lady Bouncer" data-hi="महिला गार्ड / महिला बाउंसर">Lady Guard / Lady Bouncer</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Gunman Security" /><span data-form-copy data-en="Gunman Security" data-hi="गनमैन सुरक्षा">Gunman Security</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="VIP Protection" /><span data-form-copy data-en="PSO / Bodyguard / VIP Protection" data-hi="पीएसओ / बॉडीगार्ड / वीआईपी सुरक्षा">PSO / Bodyguard / VIP Protection</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Event Security" /><span data-form-copy data-en="Event Security / Bouncers" data-hi="कार्यक्रम सुरक्षा / बाउंसर">Event Security / Bouncers</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Residential Security" /><span data-form-copy data-en="Residential Security" data-hi="आवासीय सुरक्षा">Residential Security</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Commercial Security" /><span data-form-copy data-en="Commercial / Office Security" data-hi="व्यावसायिक / कार्यालय सुरक्षा">Commercial / Office Security</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Industrial Security" /><span data-form-copy data-en="Industrial / Warehouse Security" data-hi="औद्योगिक / गोदाम सुरक्षा">Industrial / Warehouse Security</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Institutional Security" /><span data-form-copy data-en="School / Hospital / Institution Security" data-hi="स्कूल / अस्पताल / संस्थान सुरक्षा">School / Hospital / Institution Security</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Night Patrolling" /><span data-form-copy data-en="Night Patrolling" data-hi="रात्रि गश्त">Night Patrolling</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Facility Support" /><span data-form-copy data-en="Housekeeping / Facility Support" data-hi="हाउसकीपिंग / सुविधा सहायता">Housekeeping / Facility Support</span></label>
+              <label class="service-pill"><input type="checkbox" name="services[]" value="Other" /><span data-form-copy data-en="Other" data-hi="अन्य">Other</span></label>
             </div>
           </div>
           <label><span data-form-copy data-en="Requirement details" data-hi="आवश्यकता का विवरण">Requirement details</span><textarea name="message" rows="4" minlength="10" maxlength="1200" data-placeholder-en="Duty hours, shift type, and specific instructions" data-placeholder-hi="ड्यूटी के घंटे, शिफ्ट का प्रकार और विशिष्ट निर्देश" placeholder="Duty hours, shift type, and specific instructions" required></textarea></label>
