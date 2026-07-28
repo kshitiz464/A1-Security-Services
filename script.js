@@ -73,18 +73,47 @@
   }
 
   const requestedService = new URLSearchParams(window.location.search).get("service");
-  document.querySelectorAll("[data-service-select]").forEach((serviceSelect) => {
-    if (!(serviceSelect instanceof HTMLSelectElement)) {
-      return;
-    }
+  const recaptchaSiteKey = document.querySelector('meta[name="google-recaptcha-site-key"]')?.getAttribute("content")?.trim() || "";
+  let recaptchaLoader;
 
-    const hasRequestedOption = Array.from(serviceSelect.options).some(
-      (option) => option.value === requestedService
-    );
-    if (requestedService && hasRequestedOption) {
-      serviceSelect.value = requestedService;
+  const loadRecaptcha = () => {
+    if (!recaptchaSiteKey) {
+      return Promise.resolve(null);
     }
-  });
+    if (window.grecaptcha?.execute) {
+      return Promise.resolve(window.grecaptcha);
+    }
+    if (!recaptchaLoader) {
+      recaptchaLoader = new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = `https://www.google.com/recaptcha/api.js?render=${encodeURIComponent(recaptchaSiteKey)}`;
+        script.async = true;
+        script.defer = true;
+        script.onload = () => resolve(window.grecaptcha);
+        script.onerror = reject;
+        document.head.append(script);
+      });
+    }
+    return recaptchaLoader;
+  };
+
+  const getRecaptchaToken = () => {
+    if (!recaptchaSiteKey) {
+      return Promise.resolve("");
+    }
+    return loadRecaptcha().then(
+      (grecaptcha) =>
+        new Promise((resolve, reject) => {
+          if (!grecaptcha?.ready || !grecaptcha.execute) {
+            reject(new Error("reCAPTCHA did not load."));
+            return;
+          }
+          grecaptcha.ready(() => {
+            grecaptcha.execute(recaptchaSiteKey, { action: "security_enquiry" }).then(resolve, reject);
+          });
+        })
+    );
+  };
 
   document.querySelectorAll("[data-service-directory-toggle]").forEach((toggle) => {
     const panelId = toggle.getAttribute("aria-controls");
@@ -454,15 +483,61 @@
   document.querySelectorAll("[data-secure-form]").forEach((form) => {
     form.noValidate = true;
     const fields = Array.from(
-      form.querySelectorAll('input:not([type="hidden"]):not([name="botcheck"]), select, textarea')
+      form.querySelectorAll('input:not([type="hidden"]):not([type="checkbox"]):not([name="botcheck"]), select, textarea')
     );
     const validationErrors = new Map();
     const formStatus = form.querySelector("[data-form-status]");
     const languageButtons = Array.from(form.querySelectorAll("[data-form-lang]"));
     const submitButton = form.querySelector('button[type="submit"]');
+    const serviceMultiselect = form.querySelector("[data-service-multiselect]");
+    const serviceToggle = serviceMultiselect?.querySelector("[data-service-multiselect-toggle]");
+    const serviceText = serviceMultiselect?.querySelector("[data-service-multiselect-text]");
+    const serviceOptions = Array.from(serviceMultiselect?.querySelectorAll("[data-service-option]") || []);
+    const serviceSummary = form.querySelector("[data-service-summary]");
+    const serviceError = form.querySelector("[data-service-error]");
+    const recaptchaResponse = form.querySelector("[data-recaptcha-response]");
+    let isRecaptchaSubmitting = false;
 
     const isHindi = () => form.getAttribute("data-form-language") === "hi";
     const formCopy = (english, hindi) => (isHindi() ? hindi : english);
+    const getSelectedServices = () => serviceOptions.filter((option) => option instanceof HTMLInputElement && option.checked);
+    const getServiceLabel = (option) => option.closest("label")?.querySelector("span")?.textContent.trim() || option.value;
+    const setServiceOpen = (isOpen) => {
+      if (!(serviceToggle instanceof HTMLButtonElement) || !serviceMultiselect) {
+        return;
+      }
+      serviceMultiselect.classList.toggle("is-open", isOpen);
+      serviceToggle.setAttribute("aria-expanded", String(isOpen));
+    };
+    const updateServiceSummary = () => {
+      if (!serviceText) {
+        return;
+      }
+      const selected = getSelectedServices();
+      if (serviceSummary instanceof HTMLInputElement) {
+        serviceSummary.value = selected.map(getServiceLabel).join(", ");
+      }
+      if (!selected.length) {
+        serviceText.textContent =
+          serviceText.getAttribute(isHindi() ? "data-default-hi" : "data-default-en") || "Select one or more services";
+        return;
+      }
+      serviceText.textContent =
+        selected.length === 1 ? getServiceLabel(selected[0]) : formCopy(`${selected.length} services selected`, `${selected.length} services selected`);
+    };
+    const validateServiceGroup = (showMessage) => {
+      if (!serviceMultiselect) {
+        return true;
+      }
+      const isValid = getSelectedServices().length > 0;
+      const message = isValid ? "" : formCopy("Please choose at least one service.", "Please choose at least one service.");
+      serviceToggle?.setAttribute("aria-invalid", String(!isValid));
+      serviceMultiselect.classList.toggle("is-invalid", !isValid);
+      if (serviceError) {
+        serviceError.textContent = showMessage ? message : "";
+      }
+      return isValid;
+    };
 
     const setFormLanguage = (language) => {
       const activeLanguage = language === "hi" ? "hi" : "en";
@@ -493,6 +568,10 @@
           field.setCustomValidity(error.textContent);
         }
       });
+      updateServiceSummary();
+      if (serviceError?.textContent) {
+        validateServiceGroup(true);
+      }
       if (formStatus) {
         formStatus.textContent = "";
       }
@@ -540,6 +619,17 @@
           "Enter a valid email address, such as name@example.com.",
           "सही ईमेल पता दर्ज करें, जैसे name@example.com।"
         );
+      }
+
+      if (field.name === "servicemen_count" && value) {
+        const count = Number(value);
+        if (!Number.isInteger(count) || count < 1 || count > 500) {
+          return formCopy("Enter a whole number from 1 to 500.", "Enter a whole number from 1 to 500.");
+        }
+      }
+
+      if (field.name === "site_address" && value && value.replace(/[^\p{L}\p{N}]/gu, "").length < 5) {
+        return formCopy("Enter a clear site address.", "Enter a clear site address.");
       }
 
       if (field instanceof HTMLTextAreaElement && value && value.length < 10) {
@@ -612,6 +702,38 @@
       field.addEventListener("blur", () => validateField(field, true));
     });
 
+    if (serviceMultiselect && serviceToggle instanceof HTMLButtonElement) {
+      const hasRequestedService = serviceOptions.some(
+        (option) => option instanceof HTMLInputElement && option.value === requestedService
+      );
+      if (requestedService && hasRequestedService) {
+        serviceOptions.forEach((option) => {
+          if (option instanceof HTMLInputElement && option.value === requestedService) {
+            option.checked = true;
+          }
+        });
+      }
+
+      serviceToggle.addEventListener("click", () => {
+        setServiceOpen(serviceToggle.getAttribute("aria-expanded") !== "true");
+      });
+      serviceOptions.forEach((option) => {
+        option.addEventListener("change", () => {
+          updateServiceSummary();
+          validateServiceGroup(Boolean(serviceError?.textContent));
+          if (formStatus) {
+            formStatus.textContent = "";
+          }
+        });
+      });
+      document.addEventListener("click", (event) => {
+        if (!serviceMultiselect.contains(event.target)) {
+          setServiceOpen(false);
+        }
+      });
+      updateServiceSummary();
+    }
+
     languageButtons.forEach((button) => {
       button.addEventListener("click", () => setFormLanguage(button.getAttribute("data-form-lang")));
     });
@@ -638,7 +760,8 @@
           firstInvalidField = field;
         }
       });
-      if (firstInvalidField || !form.checkValidity()) {
+      const servicesAreValid = validateServiceGroup(true);
+      if (firstInvalidField || !servicesAreValid || !form.checkValidity()) {
         event.preventDefault();
         if (formStatus) {
           formStatus.textContent = formCopy(
@@ -646,9 +769,43 @@
             "भेजने से पहले चिन्हित जानकारी सही करें।"
           );
         }
-        firstInvalidField?.focus();
+        (firstInvalidField || serviceToggle)?.focus();
         return;
       }
+
+      if (recaptchaSiteKey && !isRecaptchaSubmitting) {
+        event.preventDefault();
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = true;
+          submitButton.textContent = formCopy("Checking...", "Checking...");
+        }
+        if (formStatus) {
+          formStatus.textContent = formCopy("Checking the enquiry before sending...", "Checking the enquiry before sending...");
+        }
+        getRecaptchaToken()
+          .then((token) => {
+            if (recaptchaResponse instanceof HTMLInputElement) {
+              recaptchaResponse.value = token;
+            }
+            isRecaptchaSubmitting = true;
+            form.requestSubmit();
+          })
+          .catch(() => {
+            if (submitButton instanceof HTMLButtonElement) {
+              submitButton.disabled = false;
+              submitButton.textContent = formCopy("Send security enquiry", "Send security enquiry");
+            }
+            if (formStatus) {
+              formStatus.textContent = formCopy(
+                "We could not verify the enquiry. Please refresh and try again.",
+                "We could not verify the enquiry. Please refresh and try again."
+              );
+            }
+          });
+        return;
+      }
+
+      isRecaptchaSubmitting = false;
 
       if (submitButton instanceof HTMLButtonElement) {
         submitButton.disabled = true;

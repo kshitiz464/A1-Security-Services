@@ -2043,20 +2043,99 @@ a {
   outline: none;
 }
 
+.service-multiselect {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  color: #35454f;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.service-multiselect__button {
+  display: flex;
+  width: 100%;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid #cbd5da;
+  border-radius: 3px;
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.service-multiselect__button span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.service-multiselect__menu {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  right: 0;
+  z-index: 15;
+  display: none;
+  max-height: 238px;
+  overflow: auto;
+  padding: 8px;
+  border: 1px solid #cbd5da;
+  border-radius: 4px;
+  background: var(--white);
+  box-shadow: 0 18px 35px rgba(8, 30, 45, 0.18);
+}
+
+.service-multiselect.is-open .service-multiselect__menu {
+  display: grid;
+  gap: 4px;
+}
+
+.service-multiselect__menu label {
+  display: flex;
+  min-height: 34px;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 8px;
+  border-radius: 3px;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.service-multiselect__menu label:hover {
+  background: #eef5f8;
+}
+
+.service-multiselect__menu input {
+  width: 16px;
+  min-height: 16px;
+  flex: 0 0 16px;
+  accent-color: var(--blue);
+}
+
 .contact-form textarea {
   resize: vertical;
 }
 
 .contact-form input:focus,
 .contact-form select:focus,
-.contact-form textarea:focus {
+.contact-form textarea:focus,
+.service-multiselect__button:focus {
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(36, 95, 134, 0.12);
 }
 
 .contact-form input[aria-invalid="true"],
 .contact-form select[aria-invalid="true"],
-.contact-form textarea[aria-invalid="true"] {
+.contact-form textarea[aria-invalid="true"],
+.service-multiselect__button[aria-invalid="true"] {
   border-color: var(--danger);
   box-shadow: 0 0 0 3px rgba(185, 53, 53, 0.1);
 }
