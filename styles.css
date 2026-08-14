@@ -1915,6 +1915,205 @@ a {
   text-transform: uppercase;
 }
 
+/* About page refresh */
+.about-page .section {
+  padding: 72px 0;
+}
+
+.about-page .about-hero {
+  min-height: 560px;
+}
+
+.about-page .about-hero .section-shell > * {
+  max-width: 790px;
+}
+
+.about-page .about-hero h1 {
+  font-size: clamp(3.25rem, 6.2vw, 6.6rem);
+}
+
+.about-page .about-hero p:not(.eyebrow) {
+  max-width: 760px;
+}
+
+.about-page .split-layout {
+  gap: 54px;
+}
+
+.about-page .split-media img {
+  min-height: 380px;
+}
+
+.about-page .split-copy .lead-copy {
+  margin: 18px 0 14px;
+}
+
+.about-duo,
+.about-operate__layout,
+.about-standard__layout,
+.about-testimonial-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: 36px;
+  align-items: stretch;
+}
+
+.about-duo {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-duo article,
+.about-proof-grid article,
+.about-standard-grid article,
+.about-steps article,
+.about-sector-grid article,
+.about-quotes figure {
+  margin: 0;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.about-duo article {
+  padding: 34px;
+}
+
+.about-duo h2 {
+  font-size: clamp(2.15rem, 3.5vw, 3.25rem);
+}
+
+.about-duo p:not(.eyebrow),
+.about-sector-grid p,
+.about-proof-grid p,
+.about-standard-grid p,
+.about-steps p,
+.about-quotes blockquote {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.75;
+}
+
+.about-sector-grid,
+.about-proof-grid,
+.about-standard-grid,
+.about-steps,
+.about-quotes {
+  display: grid;
+  gap: 14px;
+}
+
+.about-sector-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-sector-grid article,
+.about-proof-grid article,
+.about-standard-grid article,
+.about-steps article {
+  padding: 22px;
+}
+
+.about-sector-grid article:last-child {
+  grid-column: 1 / -1;
+}
+
+.about-sector-grid span,
+.about-proof-grid strong,
+.about-steps strong {
+  display: block;
+  color: var(--navy);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.38rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.about-proof-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.about-standard {
+  background: var(--navy);
+}
+
+.about-standard .section-heading {
+  margin-bottom: 0;
+}
+
+.about-standard-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-standard-grid article {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.about-standard-grid span,
+.about-steps span {
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.about-standard-grid h3 {
+  margin-top: 10px;
+  color: var(--white);
+  font-size: 1.5rem;
+}
+
+.about-standard-grid p {
+  color: #c8d4db;
+}
+
+.about-founder .check-list {
+  margin-bottom: 0;
+}
+
+.about-steps {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.about-testimonials {
+  background: var(--navy);
+}
+
+.about-quotes {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-quotes figure {
+  padding: 28px;
+  background: var(--paper);
+}
+
+.about-quotes blockquote {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+.about-quotes figcaption {
+  margin-top: 20px;
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.about-quotes figcaption span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.about-client-strip {
+  padding: 64px 0 54px;
+}
+
 /* Contact page */
 .enquiry-section {
   background: var(--white);
@@ -2741,6 +2940,19 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px 18px;
   }
+
+  .about-proof-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .about-standard__layout,
+  .about-testimonial-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 860px) {
@@ -2754,6 +2966,51 @@ a {
 
   .section {
     padding: 80px 0;
+  }
+
+  .about-page .section {
+    padding: 52px 0;
+  }
+
+  .about-page .about-hero {
+    min-height: 500px;
+  }
+
+  .about-page .about-hero h1 {
+    font-size: clamp(3rem, 14vw, 4.4rem);
+  }
+
+  .about-duo,
+  .about-operate__layout,
+  .about-standard__layout,
+  .about-testimonial-layout {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .about-duo article,
+  .about-sector-grid article,
+  .about-proof-grid article,
+  .about-standard-grid article,
+  .about-steps article,
+  .about-quotes figure {
+    padding: 20px;
+  }
+
+  .about-sector-grid,
+  .about-proof-grid,
+  .about-standard-grid,
+  .about-steps,
+  .about-quotes {
+    grid-template-columns: 1fr;
+  }
+
+  .about-sector-grid article:last-child {
+    grid-column: auto;
+  }
+
+  .about-page .split-media img {
+    min-height: 300px;
   }
 
   .utility-bar__inner > span {
