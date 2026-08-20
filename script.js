@@ -197,9 +197,12 @@
   const mobileStickyTitles = [];
   labelledSections.forEach((section) => {
     const titles = Array.from(section.querySelectorAll(".eyebrow")).filter(
-      (title) => title.closest("[data-section-label]") === section
+      (title) => title.closest("[data-section-label]") === section && !title.closest("article")
     );
-    const titleCandidates = titles.length ? titles : [section.querySelector("h1, h2, h3")].filter(Boolean);
+    const fallbackTitles = [section.querySelector("h1, h2, h3")].filter(
+      (title) => title && !title.closest("article")
+    );
+    const titleCandidates = titles.length ? titles : fallbackTitles;
     titleCandidates.forEach((title) => {
       const marker = document.createElement("span");
       marker.className = "mobile-sticky-marker";

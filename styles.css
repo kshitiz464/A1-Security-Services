@@ -1917,7 +1917,7 @@ a {
 
 /* About page refresh */
 .about-page .section {
-  padding: 72px 0;
+  padding: 58px 0;
 }
 
 .about-page .about-hero {
@@ -1937,7 +1937,7 @@ a {
 }
 
 .about-page .split-layout {
-  gap: 54px;
+  gap: 40px;
 }
 
 .about-page .split-media img {
@@ -1945,7 +1945,11 @@ a {
 }
 
 .about-page .split-copy .lead-copy {
-  margin: 18px 0 14px;
+  margin: 14px 0 12px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.96rem;
+  font-weight: 500;
+  line-height: 1.75;
 }
 
 .about-duo,
@@ -1954,7 +1958,7 @@ a {
 .about-testimonial-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: 36px;
+  gap: 26px;
   align-items: stretch;
 }
 
@@ -1974,7 +1978,7 @@ a {
 }
 
 .about-duo article {
-  padding: 34px;
+  padding: 28px;
 }
 
 .about-duo h2 {
@@ -1998,7 +2002,7 @@ a {
 .about-steps,
 .about-quotes {
   display: grid;
-  gap: 14px;
+  gap: 12px;
 }
 
 .about-sector-grid {
@@ -2009,7 +2013,7 @@ a {
 .about-proof-grid article,
 .about-standard-grid article,
 .about-steps article {
-  padding: 22px;
+  padding: 20px;
 }
 
 .about-sector-grid article:last-child {
@@ -2029,6 +2033,17 @@ a {
 
 .about-proof-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.about-why .section-heading {
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.about-why .section-heading h2,
+.about-why .section-heading p {
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .about-standard {
@@ -2072,6 +2087,10 @@ a {
 
 .about-steps {
   grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.about-steps span {
+  display: none;
 }
 
 .about-testimonials {
@@ -2969,15 +2988,52 @@ a {
   }
 
   .about-page .section {
-    padding: 52px 0;
+    padding: 38px 0;
   }
 
-  .about-page .about-hero {
-    min-height: 500px;
+  .about-page .about-hero.hero-carousel {
+    display: block;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    background: var(--navy);
+  }
+
+  .about-page .about-hero .hero-carousel__slides {
+    position: relative;
+    inset: auto;
+    height: clamp(230px, 46svh, 360px);
+  }
+
+  .about-page .about-hero::before {
+    display: none;
+  }
+
+  .about-page .about-hero > .section-shell {
+    position: relative;
+    z-index: 2;
+    padding-top: 24px;
+    padding-bottom: 34px;
+  }
+
+  .about-page .about-hero .eyebrow {
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 0;
+    max-width: min(92vw, 380px);
+    color: #f0c58f;
+    text-shadow: 0 2px 10px rgba(3, 15, 24, 0.55);
   }
 
   .about-page .about-hero h1 {
-    font-size: clamp(3rem, 14vw, 4.4rem);
+    margin: 0;
+    font-size: clamp(2.9rem, 12vw, 4.2rem);
+  }
+
+  .about-page .about-hero p:not(.eyebrow) {
+    margin-top: 18px;
+    font-size: 0.92rem;
+    line-height: 1.72;
   }
 
   .about-duo,
@@ -2985,7 +3041,7 @@ a {
   .about-standard__layout,
   .about-testimonial-layout {
     grid-template-columns: 1fr;
-    gap: 22px;
+    gap: 16px;
   }
 
   .about-duo article,
@@ -2994,7 +3050,7 @@ a {
   .about-standard-grid article,
   .about-steps article,
   .about-quotes figure {
-    padding: 20px;
+    padding: 18px;
   }
 
   .about-sector-grid,
@@ -3010,7 +3066,60 @@ a {
   }
 
   .about-page .split-media img {
-    min-height: 300px;
+    min-height: 240px;
+  }
+
+  .about-page .split-layout,
+  .about-page .split-layout--wide {
+    gap: 26px;
+  }
+
+  .about-story .split-copy h2,
+  .about-duo h2,
+  .about-operate .section-heading h2,
+  .about-why .section-heading h2,
+  .about-approach .section-heading h2 {
+    font-size: 2.05rem;
+    line-height: 1.08;
+  }
+
+  .about-story .split-copy .lead-copy,
+  .about-story .split-copy > p:not(.eyebrow):not(.lead-copy) {
+    margin: 12px 0 0;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.72;
+  }
+
+  .about-story .image-caption {
+    display: none;
+  }
+
+  .about-mission {
+    padding-top: 30px;
+  }
+
+  .about-operate {
+    padding-top: 32px;
+  }
+
+  .about-operate .section-heading,
+  .about-approach .section-heading,
+  .about-why .section-heading {
+    margin-bottom: 18px;
+  }
+
+  .about-sector-grid,
+  .about-proof-grid,
+  .about-standard-grid,
+  .about-steps,
+  .about-quotes {
+    gap: 10px;
+  }
+
+  .about-steps article p {
+    margin-top: 8px;
   }
 
   .utility-bar__inner > span {
@@ -3470,6 +3579,32 @@ a {
   .icon-button--hero {
     width: 34px;
     height: 48px;
+  }
+
+  .about-page .about-hero.hero-carousel,
+  .about-page .page-hero.hero-carousel {
+    height: auto;
+    min-height: 0;
+  }
+
+  .about-page .about-hero .hero-carousel__slides {
+    height: clamp(214px, 42svh, 300px);
+  }
+
+  .about-page .about-hero > .section-shell,
+  .about-page .page-hero.hero-carousel .section-shell {
+    padding: 22px 0 32px;
+  }
+
+  .about-page .about-hero .eyebrow {
+    bottom: calc(100% + 12px);
+    left: 0;
+    font-size: 0.72rem;
+    line-height: 1.3;
+  }
+
+  .about-page .about-hero h1 {
+    font-size: clamp(2.65rem, 11vw, 3.5rem);
   }
 
   .hero__lead,
