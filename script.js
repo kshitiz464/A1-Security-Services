@@ -193,7 +193,9 @@
     startAutoPlay();
   });
 
-  const labelledSections = Array.from(document.querySelectorAll("[data-section-label]"));
+  const labelledSections = Array.from(document.querySelectorAll("[data-section-label]")).filter(
+    (section) => !section.classList.contains("page-hero")
+  );
   const mobileStickyTitles = [];
   labelledSections.forEach((section) => {
     const titles = Array.from(section.querySelectorAll(".eyebrow")).filter(
