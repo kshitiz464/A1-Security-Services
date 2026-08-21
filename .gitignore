@@ -1,3 +1,18 @@
 node_modules/
 .serve-*.log
 screenshots/
+
+# Local work and generated artifacts
+.codex-remote-attachments/
+WebsiteImagesNew/
+database/
+outputs/
+AntigChangelog.md
+
+# Office/database exports should not be committed to the website repo
+*.xlsx
+*.xls
+*.csv
+*.db
+*.sqlite
+*.sqlite3
