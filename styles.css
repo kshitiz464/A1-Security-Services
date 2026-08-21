@@ -2050,6 +2050,8 @@ a {
 }
 
 .about-why .section-heading .eyebrow {
+  display: inline-flex;
+  align-items: center;
   justify-content: flex-start;
 }
 
