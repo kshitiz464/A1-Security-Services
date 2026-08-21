@@ -2035,15 +2035,32 @@ a {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.about-operate {
+  padding-bottom: 72px;
+}
+
+.about-why {
+  padding-top: 72px;
+}
+
 .about-why .section-heading {
-  margin-bottom: 28px;
+  max-width: 760px;
+  margin-bottom: 24px;
   text-align: left;
+}
+
+.about-why .section-heading .eyebrow {
+  justify-content: flex-start;
 }
 
 .about-why .section-heading h2,
 .about-why .section-heading p {
   margin-right: 0;
   margin-left: 0;
+}
+
+.about-why .section-heading h2 span {
+  display: block;
 }
 
 .about-standard {
@@ -3102,6 +3119,11 @@ a {
 
   .about-operate {
     padding-top: 32px;
+    padding-bottom: 38px;
+  }
+
+  .about-why {
+    padding-top: 38px;
   }
 
   .about-operate .section-heading,
