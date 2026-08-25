@@ -3725,8 +3725,8 @@ a {
   }
 
   .split-media img {
-    min-height: 0;
-    aspect-ratio: 4 / 3;
+    min-height: 480px;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
   }
 
