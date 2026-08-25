@@ -3086,6 +3086,7 @@ a {
 
   .about-page .split-media img {
     min-height: 480px;
+    aspect-ratio: 3/4;
   }
 
   .about-page .split-layout,
