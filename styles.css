@@ -618,7 +618,7 @@ a {
 }
 
 .split-media--portrait img {
-  aspect-ratio: 6 / 5;
+  aspect-ratio: 5 / 6;
 }
 
 .split-media--landscape img {
@@ -3085,7 +3085,7 @@ a {
   }
 
   .about-page .split-media img {
-    min-height: 240px;
+    min-height: 480px;
   }
 
   .about-page .split-layout,
