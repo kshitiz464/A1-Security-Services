@@ -7,7 +7,7 @@ screenshots/
 WebsiteImagesNew/
 database/
 outputs/
-AntigChangelog.md
+
 
 # Office/database exports should not be committed to the website repo
 *.xlsx
